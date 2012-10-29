@@ -1,7 +1,6 @@
 package studio4harkka2;
 
 import java.util.ArrayList;
-import java.util.Collection;
 
 import processing.core.PApplet;
 
