@@ -11,7 +11,7 @@ public class Rectangle extends Particle {
 			double yscale, Placer parentPlacer, PApplet parentApplet, 
 			int strokeWeight){
 		
-		super(200, 100, maxVelocity, 0.0, 0.0, 0.0, xscale, yscale, -1,
+		super(newx, newy, maxVelocity, 0.0, 0.0, 0.0, xscale, yscale, -1,
 				parentPlacer, parentApplet);
 		this.strokeWeight = strokeWeight;
 	}
@@ -19,7 +19,7 @@ public class Rectangle extends Particle {
 	@Override
 	public void drawSelf() {
 		
-		System.out.println(getX() + ", " + getY());
+		//System.out.println(getX() + ", " + getY());
 		
 		this.getApplet().stroke(0);
 		

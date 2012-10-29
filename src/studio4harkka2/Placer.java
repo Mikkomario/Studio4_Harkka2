@@ -210,8 +210,6 @@ public abstract class Placer
 			
 			// Translates the particle to it's position
 			this.applet.translate(p.getX(), p.getY());
-			// Translates the particle to depending on it's origin
-			//this.applet.translate(p.getXOffset(), p.getYOffset());
 			// and rotates it depending on it's angle
 			this.applet.rotate(PApplet.radians(-p.getAngle()));
 			// scales it depending on it's xscale and yscale

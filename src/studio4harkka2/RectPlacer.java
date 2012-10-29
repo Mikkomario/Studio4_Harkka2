@@ -21,8 +21,8 @@ public class RectPlacer extends Placer {
 	@Override
 	public Particle generateParticle() {
 		if(this.rectNumber < 10){
-			int x = (int)(this.rand.nextDouble()*this.getApplet().screenWidth);
-			int y = (int)(this.rand.nextDouble()*this.getApplet().screenHeight);
+			int x = (int)(this.rand.nextDouble()*this.getApplet().width);
+			int y = (int)(this.rand.nextDouble()*this.getApplet().height);
 			double maxVelocity = 8*this.rand.nextDouble();
 			double xscale = 5*this.rand.nextDouble();
 			double yscale = 5*this.rand.nextDouble();
@@ -41,5 +41,21 @@ public class RectPlacer extends Placer {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	/*
+	 * THIS WAS JUST FOR TESTING - by Gandalf
+	// Overrides mousepressed so that it also replaces some rectangles
+	@Override
+	public void onMousePressed()
+	{
+		super.onMousePressed();
+		for (int i = 0; i < getSize(); i++)
+		{
+			Particle p = getParticle(i);
+			p.setPosition(200, 100);
+			System.out.println(p.getX() + ", " + p.getY());
+		}
+	}
+	*/
 	
 }

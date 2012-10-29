@@ -36,10 +36,12 @@ public class Studio4Harkka2 extends PApplet
 	@Override
 	public void draw()
 	{
-		// Draws the background
-		// TODO: Change the opacity of the background
-		// Would be nice IF IT WORKED!!!
-		background(255);
+		// Draws the background with a small opacity so that old steps
+		// fade away
+		//background(255);
+		fill(255, 255, 255, 10);
+		noStroke();
+		rect(0, 0, this.width, this.height);
 		
 		for (Placer p : this.placers)
 		{
