@@ -34,7 +34,7 @@ public class PetalParticle extends Particle
 	public PetalParticle(int newx, int newy, double xscale, double yscale,
 			int duration, Placer parentPlacer, PApplet parentApplet, int colour)
 	{
-		super(newx, newy, 20, 0.2, 30, 0.2, xscale,
+		super(newx, newy, 20, 0.2, 60, 0, xscale,
 				yscale, duration, parentPlacer, parentApplet);
 
 		// Initializes attributes
@@ -48,13 +48,19 @@ public class PetalParticle extends Particle
 	@Override
 	public void drawSelf()
 	{
+		//float brightness = (float) (1.5*Math.PI + Math.sin((getDuration() /
+		//		((double) this.startDuration))*0.5*Math.PI)) * 100;
+		
 		// Sets the color and stuff
 		getApplet().noStroke();
-		getApplet().fill(this.colour, 100, ((getDuration()
-				/ this.startDuration) * 100), 80);
+		//getApplet().fill(this.colour, 100, (float) (((getDuration()
+		//		/ (double) this.startDuration)) * 100), 80);
+		getApplet().fill(this.colour, 100, 100);
 		
 		// Draws a rectangle with the origin on the bottom (sorta)
-		getApplet().ellipse(-25, -45, 25, 5);
+		//System.out.println(getYScale());
+		
+		getApplet().ellipse(-25, -30, 50, 50);
 	}
 
 	@Override

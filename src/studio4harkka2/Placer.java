@@ -190,8 +190,10 @@ public abstract class Placer
 	 */
 	public void handleParticles()
 	{	
-		for (Particle p : this.particles)
+		for (int i = 0; i < this.particles.size(); i++)
 		{
+			Particle p = this.particles.get(i);
+			
 			// Checks whether the mouse is over the particle
 			if (p.positionIsOver(this.applet.mouseX, this.applet.mouseY))
 			{

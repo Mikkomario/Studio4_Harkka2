@@ -168,7 +168,7 @@ public abstract class Particle{
 	 */
 	public double getHspeed()
 	{
-		System.out.println("Hspeed = " + this.velocity[0]);
+		//System.out.println("Hspeed = " + this.velocity[0]);
 		return this.velocity[0];
 	}
 	
@@ -476,7 +476,7 @@ public abstract class Particle{
 		//System.out.println("Speed2: " + getHspeed() + ", " + getVspeed());
 		checkMaxVelocity();
 		
-		System.out.println(getX() + ", " + getY());
+		//System.out.println(getX() + ", " + getY());
 		
 		//System.out.println("Position old: " + getX() + ", " + getY());
 		//System.out.println("Speed3: " + getHspeed() + ", " + getVspeed());
@@ -485,7 +485,7 @@ public abstract class Particle{
 		this.position[0] += getHspeed();
 		this.position[1] += getVspeed();
 		
-		System.out.println(getX() + ", " + getY());
+		//System.out.println(getX() + ", " + getY());
 		
 		//System.out.println("Position new: " + getX() + ", " + getY());
 		

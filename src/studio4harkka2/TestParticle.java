@@ -37,7 +37,7 @@ public class TestParticle extends Particle
 			double xscale, double yscale, Placer parentPlacer,
 			PApplet parentApplet)
 	{
-		super(parentApplet.width / 2, parentApplet.height /2, 100, 0, 40,
+		super(parentApplet.width / 2, parentApplet.height /2, 100, 0, 20,
 				rotationFriction, xscale, yscale, -1,
 				parentPlacer, parentApplet);
 		

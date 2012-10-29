@@ -6,8 +6,9 @@ import java.util.Random;
 import processing.core.PApplet;
 
 /**
- * This class creates a group of petals when the screen is clicked. It also
- * creates more and more petals after some have been created.
+ * This class creates a group of petals ( = a flower) when the screen
+ * is clicked. It also creates more and more flowers after some have
+ * been created.
  *
  * @author Gandalf.
  *         Created 29.10.2012.
@@ -16,7 +17,10 @@ public class PetalPlacer extends Placer
 {
 	// ATTRIBUTES	------------------------------------------------------
 	
-	private static Random rand;
+	private static Random rand = new Random();
+	
+	private ArrayList<Flower> flowers;
+	private int tillBloom;
 	
 	
 	// CONSTRUCTOR	------------------------------------------------------
@@ -29,6 +33,9 @@ public class PetalPlacer extends Placer
 	public PetalPlacer(PApplet parentApplet)
 	{
 		super(parentApplet);
+		
+		this.flowers = new ArrayList<Flower>();
+		this.tillBloom = 150;
 	}
 	
 	
@@ -37,15 +44,36 @@ public class PetalPlacer extends Placer
 	@Override
 	public Particle generateParticle()
 	{
-		// Doesn't actually create anything (implemented elsewhere)
+		// Doesn't actually create anything (implemented in the flower class)
 		return null;
 	}
 
 	@Override
 	public void onStep()
 	{
-		// TODO Auto-generated method stub.
+		// Notifies each flower of the event
+		for (int i = 0; i < this.flowers.size(); i++)
+		{
+			this.flowers.get(i).onStep();
+		}
 		
+		// Calculates whether a new bloom should occur
+		// (bloom is when all flowers multiply)
+		this.tillBloom --;
+		if (this.tillBloom <= 0)
+		{
+			bloom();
+		}
+	}
+	
+	@Override
+	public void onMousePressed()
+	{
+		// Does all things the normal placer does and also creates a new flower
+		// to the place where the user clicked (if there is no flower already)
+		super.onMousePressed();
+		
+		createFlower(getApplet().mouseX, getApplet().mouseY, 0);
 	}
 	
 	
@@ -53,40 +81,105 @@ public class PetalPlacer extends Placer
 	
 	/**
 	 * 
-	 * Creates many petals that form a single flower and adds them to the
-	 * drawing list
+	 * Generates a flower and adds it to the flowers list
 	 *
 	 *@param newx the flower's x coordinate
 	 *@param newy the flower's y coordinate
+	 *@param callNumber how many "parents" would the flower have (determines
+	 *the probability of actual creation) 
 	 *
+	 *@return the flower which was generated
 	 */
-	public void createFlower(int newx, int newy)
+	public Flower createFlower(int newx, int newy, int callNumber)
 	{	
-		// Determines the basic colour
-		int bcolour = rand.nextInt(101);
-		// And the basic scales
-		double bxscale = rand.nextDouble()*2;
-		double byscale = rand.nextDouble()*4;
+		// Checks whether a new flower should be created at all
+		if (callNumber != 0 && rand.nextDouble() < callNumber * 0.1)
+			return null;
 		
-		// Creates a single petal for each 45 degrees
-		for (int angle = 0; angle < 360; angle += 45)
+		// Determines the flower's colour
+		int colour = rand.nextInt(101);
+		// And the scales
+		double xscale = 0.1 + rand.nextDouble()*0.4;
+		double yscale = 0.4 + rand.nextDouble()*1.7;
+		// And the number of petals
+		int petalnumber = 2 + rand.nextInt(19);
+		
+		Flower newflower = new Flower(newx, newy, colour, xscale, yscale, 
+				petalnumber, this, getApplet(), callNumber);
+		
+		// Checks whether the flower would fit into the screen
+		if (getApplet() instanceof Studio4Harkka2 &&
+				!((Studio4Harkka2) getApplet()).pointIsInWindow(newx, newy,
+				- newflower.getRadius()))
+			return null;
+		
+		// Checks whether the position is free and the new flower should
+		// be added to the living flowers
+		for (int i = 0; i < this.flowers.size(); i++)
 		{
-			// Creates a particle with a bit varying values
-			double xscale = bxscale*(0.75 + rand.nextDouble()*0.5);
-			double yscale = byscale*(0.75 + rand.nextDouble()*0.5);
+			// If any flower would collide with the new flower, the flower
+			// we try to create another flower (callNumber goes up)
+			if (this.flowers.get(i).Collides(newflower))
+				return createFlower(newx, newy, callNumber + 1);
+		}
+		
+		this.flowers.add(newflower);
+		return newflower;
+	}
+	
+	/**
+	 * 
+	 * Removes the flower from the living flowers...
+	 * 
+	 * @param f the flower to be "exterminated"
+	 */
+	public void removeFlower(Flower f)
+	{
+		if (this.flowers.contains(f))
+			this.flowers.remove(f);
+	}
+	
+	private void bloom()
+	{
+		// Records all the new flowers and makes sure those flowers won't
+		// create new flowers just yet
+		ArrayList<Flower> addedFlowers = new ArrayList<Flower>();
+		
+		this.tillBloom = 30;
+		
+		// Makes all flowers create more flowers
+		for (int i = 0; i < this.flowers.size(); i++)
+		{
+			Flower f = this.flowers.get(i);
 			
-			int colour = bcolour + rand.nextInt(30) - 15;
-			if (colour > 100)
-				colour -= 100;
-			else if (colour < 0)
-				colour += 100;
+			// If the flower was just created, doesn't create new ones for that
+			if (addedFlowers.contains(f))
+				continue;
 			
-			Particle p = new PetalParticle(newx, newy, xscale, yscale,
-					100 + angle, this, getApplet(), colour);
-			p.setAngle(angle);
+			// If the flower's duration is too low, it can't create new ones
+			if (f.getDuration() < f.getMaxDuration() / 2)
+				continue;
 			
-			// Adds the particle to the drawing list
-			addParticle(p);
+			int tries = 0;
+			
+			while (tries < 3)
+			{
+				double angle = rand.nextDouble()*2*Math.PI;
+				double dist = f.getRadius()*(0.7 + rand.nextDouble()*2);
+				
+				tries ++;
+				// Positioning gets a litle complicated but the new flower
+				// would be positioned to a random range and random 
+				// drection from the creator flower
+				Flower newf = createFlower((int) (f.getX() + dist*Math.cos(angle)), 
+						(int) (f.getY() + dist*Math.sin(angle)),
+						f.getCallNumber() + 1);
+				
+				// Adds the just created flower to the list of new flowers
+				// (who won't create new flowers this round)
+				if (newf != null)
+					addedFlowers.add(newf);
+			}
 		}
 	}
 
