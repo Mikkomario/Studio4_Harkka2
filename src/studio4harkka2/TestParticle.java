@@ -17,10 +17,7 @@ public class TestParticle extends Particle
 	// ATTRIBUTES -----------------------------------------------------------
 	
 	private int alpha;
-	private static final int[][] COLOURS = {{250, 0, 0},	{0, 250, 0}, 
-											{0, 0, 250},	{255, 255, 0},
-											{150, 0, 150},	{0, 0, 0}};
-	private int[] colour;
+	private int colour;
 	private static Random rand = new Random();
 	
 	
@@ -48,7 +45,7 @@ public class TestParticle extends Particle
 		this.alpha = 0;
 		
 		// Desides particle's colour
-		this.colour = COLOURS[rand.nextInt(COLOURS.length)];
+		this.colour = rand.nextInt(101);
 	}
 	
 	
@@ -69,7 +66,7 @@ public class TestParticle extends Particle
 		getApplet().strokeWeight((float) weight);
 
 		// Changes the colour / opacity
-		getApplet().stroke(this.colour[0], this.colour[1], this.colour[2],
+		getApplet().stroke(this.colour, 100, 100,
 				this.alpha);
 		
 		//System.out.println("Colour: " + this.colour);

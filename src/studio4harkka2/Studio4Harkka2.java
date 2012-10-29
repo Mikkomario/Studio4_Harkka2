@@ -17,6 +17,7 @@ public class Studio4Harkka2 extends PApplet
 	// ATTRIBUTES -------------------------------------------------------
 	
 	private ArrayList<Placer> placers;
+	private double colorangle;
 	
 	
 	// BASIC METHODS ----------------------------------------------------
@@ -26,11 +27,16 @@ public class Studio4Harkka2 extends PApplet
 	{
 		size(600, 600);
 		
+		// Changes the colormode to HSB (Hue, saturation, brightness)
+		// max value being 100
+		colorMode(HSB, 100);
+		
 		this.placers = new ArrayList<Placer>();
+		this.colorangle = 0;
 		
 		// TODO: Add some placers here and reove the test placer
 		addPlacer(new RectPlacer(this));
-		//addPlacer(new TestPlacer(this));
+		addPlacer(new TestPlacer(this));
 	}
 
 	@Override
@@ -39,7 +45,7 @@ public class Studio4Harkka2 extends PApplet
 		// Draws the background with a small opacity so that old steps
 		// fade away
 		//background(255);
-		fill(255, 255, 255, 10);
+		fill((int) (50 + 50*Math.sin(this.colorangle)), 100, 100, 10);
 		noStroke();
 		rect(0, 0, this.width, this.height);
 		
@@ -50,6 +56,8 @@ public class Studio4Harkka2 extends PApplet
 			// Draws all the placers and particles and stuff
 			p.handleParticles();
 		}
+		
+		this.colorangle += 0.01;
 	}
 	
 	@Override
