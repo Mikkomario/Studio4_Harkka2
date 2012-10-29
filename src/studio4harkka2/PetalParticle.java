@@ -11,30 +11,35 @@ import processing.core.PApplet;
  */
 public class PetalParticle extends Particle
 {
+	// ATTRIBUTES ---------------------------------------------------------
+	
+	private int startDuration;
+	private int colour;
+	
 	
 	// CONSTRUCTOR --------------------------------------------------------
 
 	/**
-	 * TODO Put here a description of what this constructor does.
+	 * Creates a petal flower with the given attributes
 	 *
 	 * @param newx
 	 * @param newy
-	 * @param maxVelocity
-	 * @param friction
-	 * @param maxRotation
-	 * @param rotationFriction
 	 * @param xscale
 	 * @param yscale
 	 * @param duration
 	 * @param parentPlacer
 	 * @param parentApplet
+	 * @param colour The hue of the petal
 	 */
 	public PetalParticle(int newx, int newy, double xscale, double yscale,
-			int duration, Placer parentPlacer, PApplet parentApplet)
+			int duration, Placer parentPlacer, PApplet parentApplet, int colour)
 	{
 		super(newx, newy, 20, 0.2, 30, 0.2, xscale,
 				yscale, duration, parentPlacer, parentApplet);
-		// TODO Auto-generated constructor stub.
+
+		// Initializes attributes
+		this.startDuration = duration;
+		this.colour = colour;
 	}
 	
 	
@@ -43,35 +48,41 @@ public class PetalParticle extends Particle
 	@Override
 	public void drawSelf()
 	{
-		// TODO Auto-generated method stub.
+		// Sets the color and stuff
+		getApplet().noStroke();
+		getApplet().fill(this.colour, 100, ((getDuration()
+				/ this.startDuration) * 100), 80);
 		
+		// Draws a rectangle with the origin on the bottom (sorta)
+		getApplet().ellipse(-25, -45, 25, 5);
 	}
 
 	@Override
 	public boolean positionIsOver(int x, int y)
 	{
-		// TODO Auto-generated method stub.
-		return false;
+		int maxDist = (int) (50*getYScale());
+		
+		return (Studio4Harkka2.pointDistance(getX(), getY(),
+				x, y) < maxDist);
 	}
 
 	@Override
 	public void onMouseOver()
 	{
-		// TODO Auto-generated method stub.
-		
+		// Doesn't do anything particular
 	}
 
 	@Override
 	public void onMousePressed()
 	{
-		// TODO Auto-generated method stub.
+		// Nothing interesting here
 		
 	}
 
 	@Override
 	public void onMouseDown()
 	{
-		// TODO Auto-generated method stub.
+		// Nope
 		
 	}
 	

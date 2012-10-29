@@ -94,7 +94,7 @@ public class TestParticle extends Particle
 		int maxDist = (int) (25*(Math.max(getXScale(), getYScale())));
 		
 		return (Studio4Harkka2.pointDistance(getX(), getY(),
-				getApplet().mouseX, getApplet().mouseY) < maxDist);
+				x, y) < maxDist);
 	}
 
 	@Override
