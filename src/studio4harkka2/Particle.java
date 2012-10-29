@@ -14,8 +14,8 @@ import processing.core.PApplet;
 
 // TODO: Do offsets
 
-public abstract class Particle
-{
+public abstract class Particle{
+	
 	// ATTRIBUTES --------------------------------------------------------
 	private double[] position; // [x, y]
 	private double[] velocity; // [hspeed (+ = right), vspeed (+ = down)]
@@ -56,7 +56,7 @@ public abstract class Particle
 	 * @param duration How many steps the particle will live? (Negative means
 	 * infinite)
 	 * @param parentPlacer The placer who created this particle
-	 * @param parentApplet the applet with wich the particle is drawn
+	 * @param parentApplet the applet with which the particle is drawn
 	 */
 	public Particle(int newx, int newy, double maxVelocity, double friction, 
 			double maxRotation, double rotationFriction, double xscale,
@@ -85,6 +85,7 @@ public abstract class Particle
 		this.applet = parentApplet;
 		
 		//System.out.println("Current speeds: " + getHspeed() + ", " + getVspeed());
+		//System.out.println(getX() + ", " + getY());
 	}
 	
 	
@@ -189,6 +190,8 @@ public abstract class Particle
 	{
 		this.position[0] = newx;
 		this.position[1] = newy;
+		
+		//System.out.println(getX() + ", " + getY());
 	}
 	
 	/**

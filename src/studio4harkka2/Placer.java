@@ -26,7 +26,7 @@ public abstract class Placer
 	 * 
 	 * Creates a new placer with no data
 	 *
-	 * @param parentApplet the applet with wich the particles are drawn
+	 * @param parentApplet the applet with which the particles are drawn
 	 */
 	public Placer(PApplet parentApplet)
 	{
@@ -40,7 +40,7 @@ public abstract class Placer
 	
 	/**
 	 * 
-	 * Generates a new particle somehow. Each subclass desides how and what
+	 * Generates a new particle somehow. Each subclass decides how and what
 	 * kind of particles it generates.
 	 *
 	 * @return the particle generated
@@ -119,8 +119,9 @@ public abstract class Placer
 	{
 		Particle p = generateParticle();
 		
-		addParticle(p);
-		
+		if(p != null){
+			addParticle(p);
+		}
 		return p;
 	}
 	
