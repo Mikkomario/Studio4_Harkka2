@@ -29,7 +29,8 @@ public class Studio4Harkka2 extends PApplet
 		this.placers = new ArrayList<Placer>();
 		
 		// TODO: Add some placers here and reove the test placer
-		addPlacer(new TestPlacer(this));
+		addPlacer(new RectPlacer(this));
+		//addPlacer(new TestPlacer(this));
 	}
 
 	@Override
