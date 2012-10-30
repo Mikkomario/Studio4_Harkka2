@@ -97,7 +97,9 @@ public class PetalPlacer extends Placer
 			return null;
 		
 		// Determines the flower's colour
-		int colour = rand.nextInt(101);
+		//int colour = rand.nextInt(101);
+		// Updated: Now only gets red to yellow colours
+		int colour = rand.nextInt(14);
 		// And the scales
 		double xscale = 0.1 + rand.nextDouble()*0.4;
 		double yscale = 0.4 + rand.nextDouble()*1.7;
