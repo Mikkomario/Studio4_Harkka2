@@ -194,6 +194,5 @@ public class Flower
 	{	
 		return (Studio4Harkka2.pointDistance(getX(), getY(), f.getX(), f.getY())
 				< getRadius() + f.getRadius());
->>>>>>> e0dcf1a9d6f3b9c29e8a63bc709bca16f40a3b8b
 	}
 }

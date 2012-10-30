@@ -16,11 +16,7 @@ public class Rectangle extends Particle {
 			double yscale, Placer parentPlacer, PApplet parentApplet, 
 			int strokeWeight){
 		
-<<<<<<< HEAD
 		super(newx, newy, maxVelocity, 0.0, 0.0, 0.0, xscale, yscale, 10,
-=======
-		super(newx, newy, maxVelocity, 0.0, 0.0, 0.0, xscale, yscale, -1,
->>>>>>> e0dcf1a9d6f3b9c29e8a63bc709bca16f40a3b8b
 				parentPlacer, parentApplet);
 		this.strokeWeight = strokeWeight;
 		this.directionAngle = 2*Math.PI*rand.nextDouble();
@@ -30,11 +26,6 @@ public class Rectangle extends Particle {
 
 	@Override
 	public void drawSelf() {
-		
-<<<<<<< HEAD
-=======
-		//System.out.println(getX() + ", " + getY());
->>>>>>> e0dcf1a9d6f3b9c29e8a63bc709bca16f40a3b8b
 		
 		this.getApplet().stroke(0);
 		
