@@ -54,14 +54,16 @@ public class BallParticle extends Particle
 	public void drawSelf()
 	{
 		// Determines the brightness by the ball's position
-		int brightness = 30 + (1 - getY() / getApplet().height) * 70;
+		int brightness = (int) (30 + (1 - getY() / (double) getApplet().height)
+				* 70);
 		
 		// Draws a yellow / red ball
 		getApplet().stroke(0, 100, brightness);
-		getApplet().strokeWeight(10);
+		getApplet().strokeWeight(3);
 		getApplet().fill(10, 100, brightness);
 		
-		getApplet().ellipse(-25, -25, 50, 50);
+		getApplet().ellipse(0, 0, 50, 50);
+		getApplet().ellipse(0, 0, 35, 35);
 		
 	}
 
@@ -87,10 +89,13 @@ public class BallParticle extends Particle
 		double dir = Studio4Harkka2.pointDirection(getApplet().mouseX,
 				getApplet().mouseY, getX(), getY());
 		
-		System.out.println(PApplet.degrees((float) dir));
+		//System.out.println(PApplet.degrees((float) dir));
+		
+		double frc = Studio4Harkka2.pointDistance(getX(), getY(),
+				getApplet().mouseX, getApplet().mouseY)*0.1;
 		
 		// Adds motion
-		addDirectionalVelocity(dir, 2);
+		addDirectionalVelocity(dir, frc);
 	}
 
 	@Override

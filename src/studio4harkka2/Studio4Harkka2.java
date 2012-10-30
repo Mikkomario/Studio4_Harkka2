@@ -38,8 +38,8 @@ public class Studio4Harkka2 extends PApplet
 		//addPlacer(new RectPlacer(this));
 		//addPlacer(new TestPlacer(this));
 		//addPlacer(new PetalPlacer(this));
-		//addPlacer(new BallPlacer(this));
-		addPlacer(new HippiePlacer(this));
+		addPlacer(new BallPlacer(this));
+		//addPlacer(new HippiePlacer(this));
 	}
 
 	@Override
@@ -176,13 +176,8 @@ public class Studio4Harkka2 extends PApplet
 	 */
 	public static double pointDirection(int x1, int y1, int x2, int y2)
 	{
-		// Can't divide by zero
-		if (x2 - x1 == 0)
-		{
-			//System.out.println("!!!");
-			return 0;
-		}
-		
-		return Math.atan((y2 - y1) / (double) (x2 - x1));
+		double xdist = x2 - x1;
+		double ydist = y2 - y1;
+		return Math.atan2(ydist, xdist);
 	}
 }

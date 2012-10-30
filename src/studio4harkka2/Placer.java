@@ -227,6 +227,12 @@ public abstract class Placer
 			
 			p.drawSelf();
 			
+			/*
+			getApplet().fill(0);
+			getApplet().stroke(0);
+			getApplet().point(0, 0);
+			*/
+			
 			// Loads the previous translation & rotation
 			this.applet.popMatrix();
 		}
