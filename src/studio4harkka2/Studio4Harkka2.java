@@ -35,9 +35,9 @@ public class Studio4Harkka2 extends PApplet
 		this.colorangle = 0;
 		
 		// TODO: Add some placers here and reove the test placer
-		//addPlacer(new RectPlacer(this));
+		addPlacer(new RectPlacer(this));
 		//addPlacer(new TestPlacer(this));
-		addPlacer(new PetalPlacer(this));
+		//addPlacer(new PetalPlacer(this));
 	}
 
 	@Override
