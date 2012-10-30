@@ -10,6 +10,12 @@ import processing.core.PApplet;
  */
 public class BallPlacer extends Placer
 {
+	// ATTRIBUTES	------------------------------------------------------
+	
+	private int tillCreation;
+	
+	
+	// CONSTRUCTOR	------------------------------------------------------
 
 	/**
 	 * This creates a BallPlacer that will be ready to create balls when needed
@@ -19,14 +25,20 @@ public class BallPlacer extends Placer
 	public BallPlacer(PApplet parentApplet)
 	{
 		super(parentApplet);
-		// TODO Auto-generated constructor stub.
+		
+		this.tillCreation = 1;
 	}
+	
+	
+	// IMPLEMENTED METHODS	----------------------------------------------
 
 	@Override
 	public Particle generateParticle()
 	{
-		// TODO Auto-generated method stub.
-		return null;
+		
+		
+		return new BallParticle(getApplet().mouseX, getApplet().mouseY,
+				scl, grdir, grfrc, dur, this, getApplet());
 	}
 
 	@Override
