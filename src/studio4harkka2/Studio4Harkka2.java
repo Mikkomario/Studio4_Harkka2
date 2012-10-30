@@ -35,9 +35,10 @@ public class Studio4Harkka2 extends PApplet
 		this.colorangle = 0;
 		
 		// TODO: Add some placers here and reove the test placer
-		addPlacer(new RectPlacer(this));
+		//addPlacer(new RectPlacer(this));
 		//addPlacer(new TestPlacer(this));
 		//addPlacer(new PetalPlacer(this));
+		addPlacer(new BallPlacer(this));
 	}
 
 	@Override
@@ -174,6 +175,13 @@ public class Studio4Harkka2 extends PApplet
 	 */
 	public static double pointDirection(int x1, int y1, int x2, int y2)
 	{
-		return Math.atan((y2 - y1) / (x2 - x1));
+		// Can't divide by zero
+		if (x2 - x1 == 0)
+		{
+			//System.out.println("!!!");
+			return 0;
+		}
+		
+		return Math.atan((y2 - y1) / (double) (x2 - x1));
 	}
 }

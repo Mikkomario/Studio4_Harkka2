@@ -90,6 +90,14 @@ public abstract class Placer
 		return this.particles.get(index);
 	}
 	
+	/**
+	 * @return Is a mouse button pressed
+	 */
+	public boolean mouseDown()
+	{
+		return this.mouseDown;
+	}
+	
 	// OTHER METHODS -----------------------------------------------------
 	
 	/**

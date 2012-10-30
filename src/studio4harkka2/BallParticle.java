@@ -38,7 +38,7 @@ public class BallParticle extends Particle
 			double gravityDirection, double gravityForce, int duration,
 			Placer parentPlacer, PApplet parentApplet)
 	{
-		super(newx, newy, 10, 0, 0, 0, scale,
+		super(newx, newy, 20, 0, 0, 0, scale,
 				scale, -1, parentPlacer, parentApplet);
 		// Initializes attributes
 		this.lifeTime = duration;
@@ -72,7 +72,7 @@ public class BallParticle extends Particle
 		// The range is a bit larger than the ball because it wants to react
 		// further
 		return Studio4Harkka2.pointDistance(getX(), getY(), x, y)
-				< 25*getXScale() + 25;
+				< 25*getXScale()*2;
 	}
 
 	@Override
@@ -86,8 +86,11 @@ public class BallParticle extends Particle
 		// Calculates the force direction
 		double dir = Studio4Harkka2.pointDirection(getApplet().mouseX,
 				getApplet().mouseY, getX(), getY());
+		
+		System.out.println(PApplet.degrees((float) dir));
+		
 		// Adds motion
-		addDirectionalVelocity(dir, 0.5);
+		addDirectionalVelocity(dir, 2);
 	}
 
 	@Override
@@ -117,13 +120,13 @@ public class BallParticle extends Particle
 		if (this.lifeTime > 0)
 		{
 			if (getX() < 0 && getHspeed() < 0)
-				setVelocity(getHspeed() * (-0.9), getVspeed());
+				setVelocity(getHspeed() * (-0.97), getVspeed());
 			else if (getX() > getApplet().width && getHspeed() > 0)
-				setVelocity(getHspeed() * (-0.9), getVspeed());
+				setVelocity(getHspeed() * (-0.97), getVspeed());
 			if (getY() < 0 && getVspeed() < 0)
-				setVelocity(getHspeed(), getVspeed() * (-0.9));
+				setVelocity(getHspeed(), getVspeed() * (-0.97));
 			else if (getY() > getApplet().height && getVspeed() > 0)
-				setVelocity(getHspeed(), getVspeed() * (-0.9));
+				setVelocity(getHspeed(), getVspeed() * (-0.97));
 		}
 		
 		// Also checks whether the ball should die upon exiting the screen
