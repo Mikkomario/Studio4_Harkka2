@@ -1,10 +1,18 @@
 package studio4harkka2;
 
+import java.util.Random;
+
 import processing.core.PApplet;
 
 public class Rectangle extends Particle {
-	private int strokeWeight;
+	private boolean isMoving;
 	private double directionAngle;
+	private double phaseAngle;
+	private int x;
+	private int y;
+	private int distance;
+	private int strokeWeight;
+	private static Random rand = new Random();
 	
 	
 	public Rectangle(int newx, int newy, double maxVelocity, double xscale,
@@ -14,12 +22,16 @@ public class Rectangle extends Particle {
 		super(newx, newy, maxVelocity, 0.0, 0.0, 0.0, xscale, yscale, -1,
 				parentPlacer, parentApplet);
 		this.strokeWeight = strokeWeight;
+		this.directionAngle = 2*Math.PI*rand.nextDouble();
+		this.phaseAngle = 0;
+		this.isMoving = false;
+		this.distance = 20+rand.nextInt(140);
+		this.x = (int)(Math.sin(directionAngle)*Math.sin(phaseAngle)*this.distance);
+		this.y = (int)(Math.cos(directionAngle)*Math.cos(phaseAngle)*this.distance);
 	}
 
 	@Override
 	public void drawSelf() {
-		
-		//System.out.println(getX() + ", " + getY());
 		
 		this.getApplet().stroke(0);
 		
@@ -27,7 +39,8 @@ public class Rectangle extends Particle {
 		
 		this.getApplet().noFill();
 		
-		this.getApplet().rect(-25, -25, 50, 50, 10, 10);
+		this.getApplet().rect(-25+this.x, -25+this.y, 50, 50, 
+								10, 10);
 		
 	}
 
@@ -44,18 +57,38 @@ public class Rectangle extends Particle {
 
 	@Override
 	public void onMouseOver() {
-		
+		//this method isn't needed
 	}
 
 	@Override
 	public void onMousePressed() {
-		
-		
+		if(this.isMoving){
+			this.isMoving = false;
+		}
+		else {
+			this.isMoving = true;
+		}
 	}
 
 	@Override
 	public void onMouseDown() {
-		
+		//this method isn't needed
 	}
 	
+	public boolean isMoving(){
+		if(this.isMoving){
+			return true;
+		}
+		return false;
+	}
+	
+	public void moveParticle(){
+		if(this.isMoving){
+					
+			this.x = (int)(Math.sin(directionAngle)*Math.sin(phaseAngle)*this.distance);
+			this.y = (int)(Math.cos(directionAngle)*Math.cos(phaseAngle)*this.distance);
+			
+			this.phaseAngle = this.phaseAngle+0.1;
+		}
+	}
 }

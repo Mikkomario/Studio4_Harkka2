@@ -15,6 +15,7 @@ public class RectPlacer extends Placer {
 		this.rand = new Random();
 		for(int n=0; n < 10; n++){
 			this.addParticle();
+			this.rectNumber++;
 		}
 	}
 
@@ -38,8 +39,13 @@ public class RectPlacer extends Placer {
 
 	@Override
 	public void onStep() {
-		// TODO Auto-generated method stub
 		
+		for(int n=0; n < this.getSize(); n++){
+			Rectangle rect = (Rectangle)this.getParticle(n);
+			if(rect.isMoving()){
+				rect.moveParticle();
+			}
+		}
 	}
 	
 	/*
