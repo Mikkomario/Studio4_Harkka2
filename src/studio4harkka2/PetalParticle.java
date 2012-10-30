@@ -13,7 +13,6 @@ public class PetalParticle extends Particle
 {
 	// ATTRIBUTES ---------------------------------------------------------
 	
-	private int startDuration;
 	private int colour;
 	
 	
@@ -38,7 +37,6 @@ public class PetalParticle extends Particle
 				yscale, duration, parentPlacer, parentApplet);
 
 		// Initializes attributes
-		this.startDuration = duration;
 		this.colour = colour;
 	}
 	

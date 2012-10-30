@@ -65,7 +65,7 @@ public class Flower
 		this.applet = parentApplet;
 		this.callNumber = callNumber;
 		this.tillCreation = 1;
-		this.duration = 200 - (callNumber * 15);
+		this.duration = 250 - (callNumber * 20);
 		this.maxDuration = this.duration;
 		this.petals = 0;
 	}
