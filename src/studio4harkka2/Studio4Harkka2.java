@@ -38,6 +38,7 @@ public class Studio4Harkka2 extends PApplet
 		addPlacer(new RectPlacer(this));
 		//addPlacer(new TestPlacer(this));
 		//addPlacer(new PetalPlacer(this));
+		addPlacer(new HippiePlacer(this));
 	}
 
 	@Override
