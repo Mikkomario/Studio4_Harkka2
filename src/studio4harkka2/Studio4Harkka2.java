@@ -161,4 +161,19 @@ public class Studio4Harkka2 extends PApplet
 		
 		return (int) Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2));
 	}
+	
+	/**
+	 * 
+	 * Calculates the direction from one point to another (in radians)
+	 *
+	 * @param x1 the first point's x coordinate
+	 * @param y1 the first point's y coordinate
+	 * @param x2 the second point's x coordinate
+	 * @param y2 the second point's y coordinate
+	 * @return the direction from point 1 to point 2 in radians
+	 */
+	public static double pointDirection(int x1, int y1, int x2, int y2)
+	{
+		return Math.atan((y2 - y1) / (x2 - x1));
+	}
 }

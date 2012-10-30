@@ -522,6 +522,23 @@ public abstract class Particle{
 	
 	/**
 	 * 
+	 * This method adds particle's speed towards given direction
+	 *
+	 * @param anglerad the direction towards which the movement will be added
+	 * (in radians)
+	 * @param force the amount of force added to the ball
+	 * @return whether all the force was added
+	 */
+	public boolean addDirectionalVelocity(double anglerad, double force)
+	{
+		double haccelration = Math.cos(anglerad)*force;
+		double vaccelration = Math.sin(anglerad)*force;
+		
+		return addVelocity(haccelration, vaccelration);
+	}
+	
+	/**
+	 * 
 	 * The method increases the particle's rotation speed by the given value
 	 *
 	 * @param momentum particle's rotation speeds change
