@@ -1,7 +1,6 @@
 package studio4harkka2;
 
 import java.util.ArrayList;
-import java.util.Collection;
 
 import processing.core.PApplet;
 
@@ -191,8 +190,10 @@ public abstract class Placer
 	 */
 	public void handleParticles()
 	{	
-		for (Particle p : this.particles)
+		for (int i = 0; i < this.particles.size(); i++)
 		{
+			Particle p = this.particles.get(i);
+			
 			// Checks whether the mouse is over the particle
 			if (p.positionIsOver(this.applet.mouseX, this.applet.mouseY))
 			{
@@ -211,8 +212,6 @@ public abstract class Placer
 			
 			// Translates the particle to it's position
 			this.applet.translate(p.getX(), p.getY());
-			// Translates the particle to depending on it's origin
-			//this.applet.translate(p.getXOffset(), p.getYOffset());
 			// and rotates it depending on it's angle
 			this.applet.rotate(PApplet.radians(-p.getAngle()));
 			// scales it depending on it's xscale and yscale
