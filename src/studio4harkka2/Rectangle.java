@@ -8,6 +8,9 @@ public class Rectangle extends Particle {
 	private boolean isMoving;
 	private double directionAngle;
 	private double phaseAngle;
+	private int x;
+	private int y;
+	private int distance;
 	private int strokeWeight;
 	private static Random rand = new Random();
 	
@@ -16,12 +19,15 @@ public class Rectangle extends Particle {
 			double yscale, Placer parentPlacer, PApplet parentApplet, 
 			int strokeWeight){
 		
-		super(newx, newy, maxVelocity, 0.0, 0.0, 0.0, xscale, yscale, 10,
+		super(newx, newy, maxVelocity, 0.0, 0.0, 0.0, xscale, yscale, -1,
 				parentPlacer, parentApplet);
 		this.strokeWeight = strokeWeight;
 		this.directionAngle = 2*Math.PI*rand.nextDouble();
 		this.phaseAngle = 0;
 		this.isMoving = false;
+		this.distance = 20+rand.nextInt(140);
+		this.x = (int)(Math.sin(directionAngle)*Math.sin(phaseAngle)*this.distance);
+		this.y = (int)(Math.cos(directionAngle)*Math.cos(phaseAngle)*this.distance);
 	}
 
 	@Override
@@ -33,7 +39,8 @@ public class Rectangle extends Particle {
 		
 		this.getApplet().noFill();
 		
-		this.getApplet().rect(-25, -25, 50, 50, 10, 10);
+		this.getApplet().rect(-25+this.x, -25+this.y, 50, 50, 
+								10, 10);
 		
 	}
 
@@ -78,17 +85,10 @@ public class Rectangle extends Particle {
 	public void moveParticle(){
 		if(this.isMoving){
 					
-			int x = (int)(Math.sin(directionAngle)*Math.sin(phaseAngle)*100);
-			int y = (int)(Math.cos(directionAngle)*Math.cos(phaseAngle)*100);
+			this.x = (int)(Math.sin(directionAngle)*Math.sin(phaseAngle)*this.distance);
+			this.y = (int)(Math.cos(directionAngle)*Math.cos(phaseAngle)*this.distance);
 			
-			this.setPosition(x, y);
-			
-			if(this.phaseAngle < 2*Math.PI) {
-				this.phaseAngle = this.phaseAngle+0.1;
-			}
-			else {
-				this.phaseAngle = this.phaseAngle-0.1;
-			}
+			this.phaseAngle = this.phaseAngle+0.1;
 		}
 	}
 }
