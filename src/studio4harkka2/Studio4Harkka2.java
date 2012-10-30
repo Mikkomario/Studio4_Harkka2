@@ -47,7 +47,7 @@ public class Studio4Harkka2 extends PApplet
 		// Draws the background with a small opacity so that old steps
 		// fade away
 		//background(255);
-		fill((int) (50 + 50*Math.sin(this.colorangle)), 100, 100, 20);
+		fill((int) (7 + 7*Math.sin(this.colorangle)), 100, 70, 20);
 
 		noStroke();
 		rect(0, 0, this.width, this.height);
@@ -60,7 +60,7 @@ public class Studio4Harkka2 extends PApplet
 			p.handleParticles();
 		}
 		
-		this.colorangle += 0.001;
+		this.colorangle += 0.01;
 	}
 	
 	@Override

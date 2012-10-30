@@ -49,7 +49,7 @@ public class RectPlacer extends Placer {
 	}
 	
 	/*
-	 * THIS WAS JUST FOR TESTING - by Gandalf
+	 * THIS IS JUST FOR TESTING - by Gandalf
 	// Overrides mousepressed so that it also replaces some rectangles
 	@Override
 	public void onMousePressed()
@@ -58,8 +58,9 @@ public class RectPlacer extends Placer {
 		for (int i = 0; i < getSize(); i++)
 		{
 			Particle p = getParticle(i);
-			p.setPosition(200, 100);
-			System.out.println(p.getX() + ", " + p.getY());
+			//p.setPosition(200, 100);
+			System.out.println(p.getX() + ", " + p.getY() +
+					": " + p.getXScale() + ", " + p.getYScale());
 		}
 	}
 	*/

@@ -159,7 +159,7 @@ public class Flower
 		{
 			this.tillCreation = 10;
 			
-			int newcolour = this.colour + rand.nextInt(21) - 10;
+			int newcolour = this.colour + rand.nextInt(11) - 5;
 			if (newcolour < 0)
 				newcolour += 100;
 			else if (newcolour > 100)

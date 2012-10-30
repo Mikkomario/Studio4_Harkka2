@@ -15,6 +15,7 @@ public class PetalParticle extends Particle
 	
 	private int colour;
 	
+	private int startDuration;
 	
 	// CONSTRUCTOR --------------------------------------------------------
 
@@ -38,6 +39,7 @@ public class PetalParticle extends Particle
 
 		// Initializes attributes
 		this.colour = colour;
+		this.startDuration = duration;
 	}
 	
 	
@@ -47,13 +49,13 @@ public class PetalParticle extends Particle
 	public void drawSelf()
 	{
 		//float brightness = (float) (1.5*Math.PI + Math.sin((getDuration() /
-		//		((double) this.startDuration))*0.5*Math.PI)) * 100;
+				//((double) this.startDuration))*0.5*Math.PI)) * 100;
 		
 		// Sets the color and stuff
 		getApplet().noStroke();
-		//getApplet().fill(this.colour, 100, (float) (((getDuration()
-		//		/ (double) this.startDuration)) * 100), 80);
-		getApplet().fill(this.colour, 100, 100);
+		getApplet().fill(this.colour, 100, (float) (((getDuration()
+				/ ((double) this.startDuration))) * 200), 80);
+		//getApplet().fill(this.colour, 100, brightness);
 		
 		// Draws a rectangle with the origin on the bottom (sorta)
 		//System.out.println(getYScale());
