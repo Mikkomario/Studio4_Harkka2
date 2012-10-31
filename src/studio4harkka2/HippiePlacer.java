@@ -27,19 +27,15 @@ public class HippiePlacer extends Placer {
 	public Particle generateParticle() {
 		int x = (int)(rand.nextDouble()*this.getApplet().width);
 		int y = (int)(rand.nextDouble()*this.getApplet().height);
-		double maxVelocity = 8*rand.nextDouble();
+		double maxVelocity = 5+8*rand.nextDouble();
 		double friction = 3*rand.nextDouble();
-		double maxRotation= 8*rand.nextDouble();
-		double rotationFriction = 3*rand.nextDouble();
+		double maxRotation= 5+8*rand.nextDouble();
 		double scale = 0.1+rand.nextDouble();
 		int arpa = rand.nextInt(6);
 		PImage image = this.images[arpa];
-		
-		System.out.println(x);
-		
+				
 		return new HippieFlower(x, y, maxVelocity, friction, maxRotation,
-				rotationFriction, scale, scale, this, 
-				this.getApplet(), image);
+				scale, this, this.getApplet(), image);
 	}
 
 	@Override
