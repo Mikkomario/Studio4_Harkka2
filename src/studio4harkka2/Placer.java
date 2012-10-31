@@ -225,6 +225,7 @@ public abstract class Placer
 			// scales it depending on it's xscale and yscale
 			this.applet.scale((float) p.getXScale(), (float) p.getYScale());
 			
+			//System.out.println("Piirtaa partikkelin");
 			p.drawSelf();
 			
 			/*

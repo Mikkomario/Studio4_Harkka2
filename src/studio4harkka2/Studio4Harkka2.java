@@ -43,7 +43,7 @@ public class Studio4Harkka2 extends PApplet
 		this.brightness = 70;
 		this.alpha = 20;
 		
-		// TODO: Add some placers here and reove the test placer
+		// TODO: Add some placers here and remove the test placer
 		//addPlacer(new RectPlacer(this));
 		//addPlacer(new TestPlacer(this));
 		//addPlacer(new PetalPlacer(this));
