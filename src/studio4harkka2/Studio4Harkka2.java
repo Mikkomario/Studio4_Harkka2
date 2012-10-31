@@ -46,9 +46,9 @@ public class Studio4Harkka2 extends PApplet
 		// TODO: Add some placers here and remove the test placer
 		//addPlacer(new RectPlacer(this));
 		//addPlacer(new TestPlacer(this));
-		//addPlacer(new PetalPlacer(this));
-		//addPlacer(new BallPlacer(this));
-		addPlacer(new HippiePlacer(this));
+		addPlacer(new PetalPlacer(this));
+		addPlacer(new BallPlacer(this));
+		//addPlacer(new HippiePlacer(this));
 	}
 
 	@Override
