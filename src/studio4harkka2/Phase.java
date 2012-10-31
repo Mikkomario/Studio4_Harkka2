@@ -18,13 +18,13 @@ public abstract class Phase
 	private int startDuration;
 	private Studio4Harkka2 applet;
 	private ArrayList<Placer> placers;
+	private boolean active;
 	
 	// CONSTRUCTOR	------------------------------------------------------
 	
 	/**
 	 * 
-	 * This creates a new phase and adds it to the applet's phase list, but
-	 * doesn't actually start the phase.
+	 * This creates a new phase, but doesn't actually start it.
 	 *
 	 * @param parentApplet the applet to which the particles are drawn
 	 * This applet must be Studio4Harkka2
@@ -36,8 +36,9 @@ public abstract class Phase
 		this.duration = duration;
 		this.startDuration = duration;
 		this.placers = new ArrayList<Placer>();
+		this.active = false;
 		
-		this.applet.addPhase(this);
+		//this.applet.addPhase(this);
 	}
 	
 	
@@ -60,6 +61,16 @@ public abstract class Phase
 	public Studio4Harkka2 getApplet()
 	{
 		return this.applet;
+	}
+	
+	/**
+	 * Inactive phases needn't be updated
+	 *
+	 * @return is the current Phase active (drawn)
+	 */
+	public boolean isActive()
+	{
+		return this.active;
 	}
 	
 	// OTHER METHODS	---------------------------------------------------
@@ -96,6 +107,8 @@ public abstract class Phase
 	// This method handles the duration of the phase and ends if if neccessary
 	private void handleDuration()
 	{
+		//System.out.println(this.duration);
+		
 		this.duration --;
 		
 		if (this.duration <= 0)
@@ -124,6 +137,7 @@ public abstract class Phase
 	public void end()
 	{
 		clearPlacers();
+		this.active = false;
 		
 		// Finds a new phase to start
 		Phase newphase = this;
@@ -156,6 +170,7 @@ public abstract class Phase
 	{
 		clearPlacers();
 		this.duration = this.startDuration;
+		this.active = true;
 		onStart();
 	}
 	

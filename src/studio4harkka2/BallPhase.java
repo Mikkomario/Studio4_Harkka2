@@ -17,7 +17,7 @@ public class BallPhase extends Phase
 	 */
 	public BallPhase(Studio4Harkka2 parentApplet)
 	{
-		super(parentApplet, 5000);
+		super(parentApplet, 4000);
 	}
 	
 	

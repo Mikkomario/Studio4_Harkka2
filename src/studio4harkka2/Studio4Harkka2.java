@@ -48,12 +48,21 @@ public class Studio4Harkka2 extends PApplet
 		this.brightness = 70;
 		this.alpha = 20;
 		
-		// TODO: Add some placers here and remove the test placer
+		// Gandalf: These lines should NOT be uncommented anymore, the class
+		// now uses phases instead of these placers
 		//addPlacer(new RectPlacer(this));
 		//addPlacer(new TestPlacer(this));
 		//addPlacer(new PetalPlacer(this));
 		//addPlacer(new BallPlacer(this));
-		addPlacer(new HippiePlacer(this));
+		//addPlacer(new HippiePlacer(this));
+		
+		// Creates all the phases and adds them to the phase list
+		// TODO: Add your own phases here
+		addPhase(new BallPhase(this));
+		addPhase(new RectFlowerPhase(this));
+		
+		// Starts a random phase
+		randomPhase().start();
 	}
 
 	@Override
@@ -80,6 +89,15 @@ public class Studio4Harkka2 extends PApplet
 			p.onStep();
 			// Draws all the placers and particles and stuff
 			p.handleParticles();
+		}
+		
+		// Informs the active phase(s) about the step event
+		for (int i = 0; i < getPhaseNumber(); i++)
+		{	
+			Phase p = this.phases.get(i);
+			
+			if (p != null && p.isActive())
+				p.onStep();
 		}
 		
 		this.colorangle += this.colorfrequency;
@@ -211,10 +229,7 @@ public class Studio4Harkka2 extends PApplet
 	/**
 	 * 
 	 * Adds a phase to the possible phase candidates, this doesn't do
-	 * anything to the new phase.
-	 * 
-	 * This method is called automatically when a phase is created and it
-	 * should not be used anywhere else.
+	 * anything to the new phase, however.
 	 *
 	 *@param p The phase to be added
 	 */
