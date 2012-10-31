@@ -1,6 +1,7 @@
 package studio4harkka2;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import processing.core.PApplet;
 
@@ -16,12 +17,15 @@ public class Studio4Harkka2 extends PApplet
 {	
 	// ATTRIBUTES -------------------------------------------------------
 	
+	private static Random rand = new Random();
+	
 	private ArrayList<Placer> placers;
 	private double colorangle;
 	private int maxcolour, mincolour;
 	private double colorfrequency;
 	private int brightness;
 	private int alpha;
+	private ArrayList<Phase> phases;
 	
 	
 	// BASIC METHODS ----------------------------------------------------
@@ -36,6 +40,7 @@ public class Studio4Harkka2 extends PApplet
 		colorMode(HSB, 100);
 		
 		this.placers = new ArrayList<Placer>();
+		this.phases = new ArrayList<Phase>();
 		this.colorangle = 0;
 		this.colorfrequency = 0.01;
 		this.mincolour = 0;
@@ -93,6 +98,17 @@ public class Studio4Harkka2 extends PApplet
 			// Informs the placer(s)
 			p.onMouseReleased();
 		}
+	}
+	
+	
+	// GETTTERS & SETTERS	-----------------------------------------------
+	
+	/**
+	 * @return How many possible phases there are
+	 */
+	public int getPhaseNumber()
+	{
+		return this.phases.size();
 	}
 	
 	
@@ -156,6 +172,54 @@ public class Studio4Harkka2 extends PApplet
 		this.placers.remove(p);
 		return true;
 	}
+	
+	/**
+	 * 
+	 * Adds a phase to the possible phase candidates, this doesn't yet do
+	 * anything to the new phase.
+	 * 
+	 * This method is called automatically when a phase is created so you
+	 * should not use it anywhere else
+	 *
+	 *@param p The phase to be added
+	 */
+	public void addPhase(Phase p)
+	{
+		if (!this.phases.contains(p))
+			this.phases.add(p);
+	}
+	
+	/**
+	 * 
+	 * This method removes the phase from the possibly used phases
+	 * Use this if you won't want to see a phase again
+	 *
+	 * @param p the phase to be removed
+	 */
+	public void removePhase(Phase p)
+	{
+		if (this.phases.contains(p))
+			this.phases.remove(p);
+	}
+	
+	/**
+	 * 
+	 * Pics a random phase from the phases -list
+	 *
+	 * @return the randomly picked phase, null if there are no possible phases
+	 */
+	public Phase randomPhase()
+	{
+		if (this.phases.size() == 0)
+			return null;
+		
+		int phaseindex = rand.nextInt(this.phases.size());
+		
+		return this.phases.get(phaseindex);
+	}
+	
+	
+	// STATIC METHODS	---------------------------------------------------
 	
 	/**
 	 * 
