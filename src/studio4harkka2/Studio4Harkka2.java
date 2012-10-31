@@ -18,6 +18,10 @@ public class Studio4Harkka2 extends PApplet
 	
 	private ArrayList<Placer> placers;
 	private double colorangle;
+	private int maxcolour, mincolour;
+	private double colorfrequency;
+	private int brightness;
+	private int alpha;
 	
 	
 	// BASIC METHODS ----------------------------------------------------
@@ -33,13 +37,18 @@ public class Studio4Harkka2 extends PApplet
 		
 		this.placers = new ArrayList<Placer>();
 		this.colorangle = 0;
+		this.colorfrequency = 0.01;
+		this.mincolour = 0;
+		this.maxcolour = 14;
+		this.brightness = 70;
+		this.alpha = 20;
 		
 		// TODO: Add some placers here and reove the test placer
 		//addPlacer(new RectPlacer(this));
 		//addPlacer(new TestPlacer(this));
 		//addPlacer(new PetalPlacer(this));
-		addPlacer(new BallPlacer(this));
-		//addPlacer(new HippiePlacer(this));
+		//addPlacer(new BallPlacer(this));
+		addPlacer(new HippiePlacer(this));
 	}
 
 	@Override
@@ -48,7 +57,9 @@ public class Studio4Harkka2 extends PApplet
 		// Draws the background with a small opacity so that old steps
 		// fade away
 		//background(255);
-		fill((int) (7 + 7*Math.sin(this.colorangle)), 100, 70, 20);
+		fill((int) (this.mincolour + this.maxcolour/2 +
+				this.maxcolour/2*Math.sin(this.colorangle)), 100,
+				this.brightness, this.alpha);
 
 		noStroke();
 		rect(0, 0, this.width, this.height);
@@ -61,7 +72,7 @@ public class Studio4Harkka2 extends PApplet
 			p.handleParticles();
 		}
 		
-		this.colorangle += 0.01;
+		this.colorangle += this.colorfrequency;
 	}
 	
 	@Override
