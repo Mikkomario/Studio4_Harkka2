@@ -18,25 +18,37 @@ public class HippieFlower extends Particle {
 				maxRotation, rotationFriction, xscale,
 				yscale, 250, parentPlacer, parentApplet);
 		this.image = image;
+		System.out.println("luodaan kukkia"+ this.getDuration());
 	}
 
 	@Override
 	public void drawSelf() {
-		// TODO Auto-generated method stub
-		this.getApplet().image(this.image, this.getX(), this.getY());
+		System.out.println("yrittää piirtää");
+		this.getApplet().image(this.image, this.image.width/2, 
+								this.image.height/2);
 	}
 
 	@Override
 	public boolean positionIsOver(int x, int y) {
-		// TODO Auto-generated method stub
-		return false;
+		int bigger;
+		if(this.image.width > this.image.height){
+			bigger = this.image.width;
+		}
+		else {
+			bigger = this.image.height;
+		}
+		int maxDist = (int) (bigger*(Math.max(getXScale(), getYScale())));
+		
+		return (Studio4Harkka2.pointDistance(getX(), getY(),
+				x, y) < maxDist);
 	}
 
 	@Override
 	public void onMouseOver() {
-		//this.method will make the flower move
-		// TODO Auto-generated method stub
-		
+		if (getRotation() == 0)
+			setRotation(20*(rand.nextDouble() - 0.5));
+		else
+			addRotation(getRotation()*0.05);
 	}
 
 	@Override

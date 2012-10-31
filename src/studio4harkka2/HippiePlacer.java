@@ -11,10 +11,15 @@ public class HippiePlacer extends Placer {
 	
 	public HippiePlacer(PApplet parentApplet){
 		super(parentApplet);
-		this.images = new PImage[1];
+		this.images = new PImage[6];
 		this.images[0] = this.getApplet().loadImage("flower_power.png");
+		this.images[1] = this.getApplet().loadImage("flower_power1.png");
+		this.images[2] = this.getApplet().loadImage("flower_power2.png");
+		this.images[3] = this.getApplet().loadImage("flower_power3.png");
+		this.images[4] = this.getApplet().loadImage("peace.png");
+		this.images[5] = this.getApplet().loadImage("randomflower.png");
 		for(int n=0; n < 10; n++){
-			this.generateParticle();
+			this.addParticle();
 		}
 	}
 
@@ -26,19 +31,20 @@ public class HippiePlacer extends Placer {
 		double friction = 3*rand.nextDouble();
 		double maxRotation= 8*rand.nextDouble();
 		double rotationFriction = 3*rand.nextDouble();
-		double xscale = 5*rand.nextDouble();
-		double yscale = 5*rand.nextDouble();
-		int arpa = rand.nextInt(5);
-		PImage image = this.images[0];
+		double scale = 0.1+rand.nextDouble();
+		int arpa = rand.nextInt(6);
+		PImage image = this.images[arpa];
+		
+		System.out.println(x);
 		
 		return new HippieFlower(x, y, maxVelocity, friction, maxRotation,
-				rotationFriction, xscale, yscale, this, 
+				rotationFriction, scale, scale, this, 
 				this.getApplet(), image);
 	}
 
 	@Override
 	public void onStep() {
-		// TODO Auto-generated method stub
+		//System.out.println("hjhjj");
 		
 	}
 	
