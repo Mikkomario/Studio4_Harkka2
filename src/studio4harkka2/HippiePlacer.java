@@ -40,7 +40,12 @@ public class HippiePlacer extends Placer {
 
 	@Override
 	public void onStep() {
-		//System.out.println("hjhjj");
+		
+	}
+	
+	@Override
+	public void onMousePressed() {
+		this.addParticle();
 		
 	}
 	
