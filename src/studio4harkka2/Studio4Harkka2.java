@@ -210,11 +210,11 @@ public class Studio4Harkka2 extends PApplet
 	
 	/**
 	 * 
-	 * Adds a phase to the possible phase candidates, this doesn't yet do
+	 * Adds a phase to the possible phase candidates, this doesn't do
 	 * anything to the new phase.
 	 * 
-	 * This method is called automatically when a phase is created so you
-	 * should not use it anywhere else
+	 * This method is called automatically when a phase is created and it
+	 * should not be used anywhere else.
 	 *
 	 *@param p The phase to be added
 	 */

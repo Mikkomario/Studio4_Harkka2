@@ -23,8 +23,8 @@ public abstract class Phase
 	
 	/**
 	 * 
-	 * This creates a new phase that starts to act somehow (determined in the
-	 * subclasses)
+	 * This creates a new phase and adds it to the applet's phase list, but
+	 * doesn't actually start the phase.
 	 *
 	 * @param parentApplet the applet to which the particles are drawn
 	 * This applet must be Studio4Harkka2
@@ -37,7 +37,7 @@ public abstract class Phase
 		this.startDuration = duration;
 		this.placers = new ArrayList<Placer>();
 		
-		onStart();
+		this.applet.addPhase(this);
 	}
 	
 	
