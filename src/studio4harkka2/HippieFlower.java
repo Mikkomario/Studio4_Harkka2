@@ -11,19 +11,15 @@ public class HippieFlower extends Particle {
 	private static Random rand = new Random();
 	
 	public HippieFlower(int newx, int newy, double maxVelocity, double friction, 
-			double maxRotation, double rotationFriction, double xscale,
-			double yscale, Placer parentPlacer, PApplet parentApplet, 
-			PImage image){
+			double maxRotation, double scale, Placer parentPlacer,
+			PApplet parentApplet, PImage image){
 		super(newx, newy, maxVelocity, friction, 
-				maxRotation, rotationFriction, xscale,
-				yscale, 250, parentPlacer, parentApplet);
+				maxRotation, 0, scale, scale, 250, parentPlacer, parentApplet);
 		this.image = image;
-		System.out.println("luodaan kukkia"+ this.getDuration());
 	}
 
 	@Override
 	public void drawSelf() {
-		System.out.println("yritt‰‰ piirt‰‰");
 		this.getApplet().image(this.image, this.image.width/2, 
 								this.image.height/2);
 	}
@@ -46,16 +42,14 @@ public class HippieFlower extends Particle {
 	@Override
 	public void onMouseOver() {
 		if (getRotation() == 0)
-			setRotation(20*(rand.nextDouble() - 0.5));
+			setRotation(26*(rand.nextDouble() - 0.5));
 		else
 			addRotation(getRotation()*0.05);
 	}
 
 	@Override
 	public void onMousePressed() {
-		//this method will create new flowerparticles
-		// TODO Auto-generated method stub
-		
+		//this method is not needed
 	}
 
 	@Override
