@@ -21,7 +21,7 @@ public class Studio4Harkka2 extends PApplet
 	
 	private ArrayList<Placer> placers;
 	private double colorangle;
-	private int maxcolour, mincolour;
+	private int colourRange, mincolour;
 	private double colorfrequency;
 	private int brightness;
 	private int alpha;
@@ -44,7 +44,7 @@ public class Studio4Harkka2 extends PApplet
 		this.colorangle = 0;
 		this.colorfrequency = 0.01;
 		this.mincolour = 0;
-		this.maxcolour = 14;
+		this.colourRange = 14;
 		this.brightness = 70;
 		this.alpha = 20;
 		
@@ -62,9 +62,14 @@ public class Studio4Harkka2 extends PApplet
 		// Draws the background with a small opacity so that old steps
 		// fade away
 		//background(255);
-		fill((int) (this.mincolour + this.maxcolour/2 +
-				this.maxcolour/2*Math.sin(this.colorangle)), 100,
-				this.brightness, this.alpha);
+		int fillColour = (int) (this.mincolour + this.colourRange/2 +
+				this.colourRange/2*Math.sin(this.colorangle));
+		if (fillColour < 0)
+			fillColour += 100;
+		else if (fillColour > 100)
+			fillColour -= 100;
+		
+		fill(fillColour, 100, this.brightness, this.alpha);
 
 		noStroke();
 		rect(0, 0, this.width, this.height);
@@ -109,6 +114,36 @@ public class Studio4Harkka2 extends PApplet
 	public int getPhaseNumber()
 	{
 		return this.phases.size();
+	}
+	
+	/**
+	 * 
+	 * This method changes how the screen is drawn. it changes the background
+	 * color and some other aspects.
+	 * 
+	 * leave parameter to -1 if you don't want to change it
+	 *
+	 * @param mincolour the smallest possible hue [0, 100]
+	 * @param colourRange how much the hue can change [0, 100]
+	 * @param brightness how brigth / dark the background is [0 (dark),
+	 * 100 (bright)]
+	 * @param alpha how effectively the screen is redrawn
+	 * [0 (every image stays), 100 (images last 1 frame)]
+	 * @param colourFrequency how fast the backgroung color is changed
+	 */
+	public void setVisuals(int mincolour, int colourRange, int brightness,
+			int alpha, double colourFrequency)
+	{
+		if (mincolour != -1)
+			this.mincolour = mincolour;
+		if (colourRange != -1)
+			this.colourRange = colourRange;
+		if (brightness != -1)
+			this.brightness = brightness;
+		if (alpha != -1)
+			this.alpha = alpha;
+		if (colourFrequency != -1)
+			this.colorfrequency = colourFrequency;
 	}
 	
 	

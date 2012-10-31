@@ -37,7 +37,7 @@ public abstract class Phase
 		this.startDuration = duration;
 		this.placers = new ArrayList<Placer>();
 		
-		onCreation();
+		onStart();
 	}
 	
 	
@@ -49,8 +49,18 @@ public abstract class Phase
 	 * It should affect the applet and possibly add some placers
 	 *
 	 */
-	public abstract void onCreation();
+	public abstract void onStart();
 	
+	
+	// GETTERS & SETTERS	-----------------------------------------------
+	
+	/**
+	 * @return the applet to which all the particles are drawn
+	 */
+	public Studio4Harkka2 getApplet()
+	{
+		return this.applet;
+	}
 	
 	// OTHER METHODS	---------------------------------------------------
 	
@@ -146,7 +156,7 @@ public abstract class Phase
 	{
 		clearPlacers();
 		this.duration = this.startDuration;
-		onCreation();
+		onStart();
 	}
 	
 	/**
