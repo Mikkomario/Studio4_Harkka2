@@ -38,7 +38,7 @@ public class BallParticle extends Particle
 			double gravityDirection, double gravityForce, int duration,
 			Placer parentPlacer, PApplet parentApplet)
 	{
-		super(newx, newy, 20, 0, 0, 0, scale,
+		super(newx, newy, 15, 0, 0, 0, scale,
 				scale, -1, parentPlacer, parentApplet);
 		// Initializes attributes
 		this.lifeTime = duration;
