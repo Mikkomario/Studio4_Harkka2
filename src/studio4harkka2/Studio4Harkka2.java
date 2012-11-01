@@ -1,6 +1,7 @@
 package studio4harkka2;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import processing.core.PApplet;
 
@@ -16,12 +17,15 @@ public class Studio4Harkka2 extends PApplet
 {	
 	// ATTRIBUTES -------------------------------------------------------
 	
+	private static Random rand = new Random();
+	
 	private ArrayList<Placer> placers;
 	private double colorangle;
-	private int maxcolour, mincolour;
+	private int colourRange, mincolour;
 	private double colorfrequency;
 	private int brightness;
 	private int alpha;
+	private ArrayList<Phase> phases;
 	
 	
 	// BASIC METHODS ----------------------------------------------------
@@ -36,19 +40,36 @@ public class Studio4Harkka2 extends PApplet
 		colorMode(HSB, 100);
 		
 		this.placers = new ArrayList<Placer>();
+		this.phases = new ArrayList<Phase>();
 		this.colorangle = 0;
 		this.colorfrequency = 0.01;
 		this.mincolour = 0;
-		this.maxcolour = 14;
+		this.colourRange = 14;
 		this.brightness = 70;
 		this.alpha = 20;
 		
-		// TODO: Add some placers here and remove the test placer
+		// Gandalf: These lines should NOT be uncommented anymore, the class
+		// now uses phases instead of these placers
 		//addPlacer(new RectPlacer(this));
 		//addPlacer(new TestPlacer(this));
-		addPlacer(new PetalPlacer(this));
-		addPlacer(new BallPlacer(this));
+
+		//addPlacer(new PetalPlacer(this));
+		//addPlacer(new BallPlacer(this));
 		//addPlacer(new HippiePlacer(this));
+
+		//addPlacer(new PetalPlacer(this));
+		//addPlacer(new BallPlacer(this));
+		//addPlacer(new HippiePlacer(this));
+		
+		// Creates all the phases and adds them to the phase list
+		// TODO: Add your own phases here
+		addPhase(new BallPhase(this));
+		addPhase(new RectFlowerPhase(this));
+		addPhase(new HippiePhase(this));
+		addPhase(new RectPhase(this));
+		// Starts a random phase
+		randomPhase().start();
+
 	}
 
 	@Override
@@ -57,9 +78,14 @@ public class Studio4Harkka2 extends PApplet
 		// Draws the background with a small opacity so that old steps
 		// fade away
 		//background(255);
-		fill((int) (this.mincolour + this.maxcolour/2 +
-				this.maxcolour/2*Math.sin(this.colorangle)), 100,
-				this.brightness, this.alpha);
+		int fillColour = (int) (this.mincolour + this.colourRange/2 +
+				this.colourRange/2*Math.sin(this.colorangle));
+		if (fillColour < 0)
+			fillColour += 100;
+		else if (fillColour > 100)
+			fillColour -= 100;
+		
+		fill(fillColour, 100, this.brightness, this.alpha);
 
 		noStroke();
 		rect(0, 0, this.width, this.height);
@@ -70,6 +96,15 @@ public class Studio4Harkka2 extends PApplet
 			p.onStep();
 			// Draws all the placers and particles and stuff
 			p.handleParticles();
+		}
+		
+		// Informs the active phase(s) about the step event
+		for (int i = 0; i < getPhaseNumber(); i++)
+		{	
+			Phase p = this.phases.get(i);
+			
+			if (p != null && p.isActive())
+				p.onStep();
 		}
 		
 		this.colorangle += this.colorfrequency;
@@ -93,6 +128,47 @@ public class Studio4Harkka2 extends PApplet
 			// Informs the placer(s)
 			p.onMouseReleased();
 		}
+	}
+	
+	
+	// GETTTERS & SETTERS	-----------------------------------------------
+	
+	/**
+	 * @return How many possible phases there are
+	 */
+	public int getPhaseNumber()
+	{
+		return this.phases.size();
+	}
+	
+	/**
+	 * 
+	 * This method changes how the screen is drawn. it changes the background
+	 * color and some other aspects.
+	 * 
+	 * leave parameter to -1 if you don't want to change it
+	 *
+	 * @param mincolour the smallest possible hue [0, 100]
+	 * @param colourRange how much the hue can change [0, 100]
+	 * @param brightness how brigth / dark the background is [0 (dark),
+	 * 100 (bright)]
+	 * @param alpha how effectively the screen is redrawn
+	 * [0 (every image stays), 100 (images last 1 frame)]
+	 * @param colourFrequency how fast the backgroung color is changed
+	 */
+	public void setVisuals(int mincolour, int colourRange, int brightness,
+			int alpha, double colourFrequency)
+	{
+		if (mincolour != -1)
+			this.mincolour = mincolour;
+		if (colourRange != -1)
+			this.colourRange = colourRange;
+		if (brightness != -1)
+			this.brightness = brightness;
+		if (alpha != -1)
+			this.alpha = alpha;
+		if (colourFrequency != -1)
+			this.colorfrequency = colourFrequency;
 	}
 	
 	
@@ -156,6 +232,51 @@ public class Studio4Harkka2 extends PApplet
 		this.placers.remove(p);
 		return true;
 	}
+	
+	/**
+	 * 
+	 * Adds a phase to the possible phase candidates, this doesn't do
+	 * anything to the new phase, however.
+	 *
+	 *@param p The phase to be added
+	 */
+	public void addPhase(Phase p)
+	{
+		if (!this.phases.contains(p))
+			this.phases.add(p);
+	}
+	
+	/**
+	 * 
+	 * This method removes the phase from the possibly used phases
+	 * Use this if you won't want to see a phase again
+	 *
+	 * @param p the phase to be removed
+	 */
+	public void removePhase(Phase p)
+	{
+		if (this.phases.contains(p))
+			this.phases.remove(p);
+	}
+	
+	/**
+	 * 
+	 * Pics a random phase from the phases -list
+	 *
+	 * @return the randomly picked phase, null if there are no possible phases
+	 */
+	public Phase randomPhase()
+	{
+		if (this.phases.size() == 0)
+			return null;
+		
+		int phaseindex = rand.nextInt(this.phases.size());
+		
+		return this.phases.get(phaseindex);
+	}
+	
+	
+	// STATIC METHODS	---------------------------------------------------
 	
 	/**
 	 * 

@@ -8,10 +8,12 @@ public class Rectangle extends Particle {
 	private boolean isMoving;
 	private double directionAngle;
 	private double phaseAngle;
+	private double originalVelocity;
 	private int x;
 	private int y;
 	private int distance;
 	private int strokeWeight;
+	private int slowDown;
 	private static Random rand = new Random();
 	
 	
@@ -26,8 +28,12 @@ public class Rectangle extends Particle {
 		this.phaseAngle = 0;
 		this.isMoving = false;
 		this.distance = 20+rand.nextInt(140);
-		this.x = (int)(Math.sin(directionAngle)*Math.sin(phaseAngle)*this.distance);
-		this.y = (int)(Math.cos(directionAngle)*Math.sin(phaseAngle)*this.distance);
+		this.x = (int)(Math.sin(directionAngle)*Math.sin(phaseAngle)
+				*this.distance);
+		this.y = (int)(Math.cos(directionAngle)*Math.sin(phaseAngle)
+				*this.distance);
+		this.slowDown = 0;
+		this.originalVelocity = this.getMaxVelocity();
 	}
 
 	@Override
@@ -89,6 +95,17 @@ public class Rectangle extends Particle {
 			this.y = (int)(Math.cos(directionAngle)*Math.sin(phaseAngle)*this.distance);
 			
 			this.phaseAngle = this.phaseAngle+0.1;
-		}
+			
+			this.slowDown++;
+			
+			if(this.slowDown > 100){
+				this.setMaxVelocity(this.getMaxVelocity()-0.1);
+				if(this.getMaxVelocity() == 0){
+					this.isMoving = false;
+					this.setMaxVelocity(this.originalVelocity);
+				}
+			}
+		}	
 	}
+	
 }
