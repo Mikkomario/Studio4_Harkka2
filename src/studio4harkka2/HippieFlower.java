@@ -5,6 +5,12 @@ import java.util.Random;
 import processing.core.PApplet;
 import processing.core.PImage;
 
+/**HippieFlower repesents a single visual image drawn on the screen.
+* The class extends Particle. It may be a flower of some kind or a peace sign.
+* Knows its position, has a velocity and can draw itself onto the screen. 
+* When mouse is over it, it starts rotating.
+* @author - Tiitu
+*/
 public class HippieFlower extends Particle {
 	private PImage image;
 	private static Random rand = new Random();
