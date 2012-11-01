@@ -4,6 +4,14 @@ import java.util.Random;
 
 import processing.core.PApplet;
 
+/**
+ * Rectangle repesents a single visual rectangle drawn on the screen.
+ * The class extends Particle. Knows its position, has a velocity 
+ * and can draw itself onto the screen. Starts moving when mouse pressed on its
+ * position.
+ * @author Tiitu
+ *
+ */
 public class Rectangle extends Particle {
 	private boolean isMoving;
 	private double directionAngle;
@@ -84,19 +92,12 @@ public class Rectangle extends Particle {
 		//this method isn't needed
 	}
 
-	
 	/**
-	 * Method, that changes the rectangle's moving status. If the rectangle is
-	 * moving when the mouse is pressed, it stops it and vice versa.
+	 * Starts the moving of the particle
 	 */
 	@Override
 	public void onMousePressed() {
-		if(this.isMoving){
-			this.isMoving = false;
-		}
-		else {
-			this.isMoving = true;
-		}
+		this.isMoving = true;
 	}
 
 	@Override
@@ -134,13 +135,14 @@ public class Rectangle extends Particle {
 			
 			this.slowDown++;
 			
-			if(this.slowDown > 100){
+			if(this.slowDown > 200){
 				this.setMaxVelocity(this.getMaxVelocity()-0.05);
 				if(this.getMaxVelocity() == 0){
 					this.isMoving = false;
 					this.setMaxVelocity(this.originalVelocity);
 					this.slowDown= 0;
 					this.phaseAngle = 0;
+					this.setPosition(this.getX()+this.x, this.getY()+this.y);
 				}
 			}
 		}	
