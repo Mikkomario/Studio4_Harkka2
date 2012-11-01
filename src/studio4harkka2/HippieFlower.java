@@ -27,7 +27,7 @@ public class HippieFlower extends Particle {
 			double maxRotation, double scale, Placer parentPlacer,
 			PApplet parentApplet, PImage image){
 		super(newx, newy, maxVelocity, friction, 
-				maxRotation, 0, scale, scale, 250, parentPlacer, parentApplet);
+				maxRotation, 0, scale, scale, 500, parentPlacer, parentApplet);
 		this.image = image;
 	}
 
@@ -36,12 +36,12 @@ public class HippieFlower extends Particle {
 	 */
 	@Override
 	public void drawSelf() {
-		this.getApplet().image(this.image, this.image.width/2, 
-								this.image.height/2);
+		this.getApplet().image(this.image, -this.image.width/2, 
+								-this.image.height/2);
 	}
 
 	/**
-	 * 
+	 * Checks whether the mouse is over the hippie-flower
 	 */
 	@Override
 	public boolean positionIsOver(int x, int y) {
@@ -59,7 +59,8 @@ public class HippieFlower extends Particle {
 	}
 
 	/**
-	 * Method that 
+	 * Method that sets a value for rotation for the hippie-flower when the 
+	 * mouse is over it or speeds it if it already is rotating
 	 */
 	@Override
 	public void onMouseOver() {

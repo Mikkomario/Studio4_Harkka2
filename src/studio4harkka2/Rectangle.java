@@ -84,19 +84,9 @@ public class Rectangle extends Particle {
 		//this method isn't needed
 	}
 
-	
-	/**
-	 * Method, that changes the rectangle's moving status. If the rectangle is
-	 * moving when the mouse is pressed, it stops it and vice versa.
-	 */
 	@Override
 	public void onMousePressed() {
-		if(this.isMoving){
-			this.isMoving = false;
-		}
-		else {
-			this.isMoving = true;
-		}
+		//this method is not needed
 	}
 
 	@Override
@@ -134,13 +124,14 @@ public class Rectangle extends Particle {
 			
 			this.slowDown++;
 			
-			if(this.slowDown > 100){
+			if(this.slowDown > 200){
 				this.setMaxVelocity(this.getMaxVelocity()-0.05);
 				if(this.getMaxVelocity() == 0){
 					this.isMoving = false;
 					this.setMaxVelocity(this.originalVelocity);
 					this.slowDown= 0;
 					this.phaseAngle = 0;
+					this.setPosition(this.getX()+this.x, this.getY()+this.y);
 				}
 			}
 		}	
