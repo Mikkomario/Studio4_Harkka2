@@ -1,0 +1,173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+	        <!-- charset must remain utf-8 to be handled properly by Processing -->
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		
+		<title>studio4harkka2.Studio4Harkka2 : Built with Processing</title>
+		
+		<style type="text/css">
+		/* <![CDATA[ */
+	
+		body {
+  		  margin: 60px 0px 0px 55px;
+		  font-family: verdana, geneva, arial, helvetica, sans-serif; 
+		  font-size: 11px; 
+		  background-color: #ddddcc; 
+		  text-decoration: none; 
+		  font-weight: normal; 
+		  line-height: normal; 
+		}
+		 
+		a          { color: #3399cc; }
+		a:link     { color: #3399cc; text-decoration: underline; }
+		a:visited  { color: #3399cc; text-decoration: underline; }
+		a:active   { color: #3399cc; text-decoration: underline; }
+		a:hover    { color: #3399cc; text-decoration: underline; }
+	
+		/* ]]> */
+		</style>
+	 
+	</head>
+	<body>
+		<div id="content">
+			<div id="studio4harkka2.Studio4Harkka2_container">
+			
+			<!--[if !IE]> -->
+				<object classid="java:studio4harkka2.Studio4Harkka2.class" 
+            			type="application/x-java-applet"
+            			archive="Studio4Harkka2.jar"
+            			width="600" height="600"
+            			standby="Loading Processing software..." >
+            			
+					<param name="archive" value="Studio4Harkka2.jar" />
+				
+					<param name="mayscript" value="true" />
+					<param name="scriptable" value="true" />
+				
+					<param name="image" value="loading.gif" />
+					<param name="boxmessage" value="Loading Processing software..." />
+					<param name="boxbgcolor" value="#FFFFFF" />
+				
+					<param name="test_string" value="outer" />
+			<!--<![endif]-->
+				
+				<object classid="clsid:CAFEEFAC-0016-0000-FFFF-ABCDEFFEDCBA" 
+						codebase="http://java.sun.com/update/1.5.0/jinstall-1_5_0_15-windows-i586.cab"
+						width="600" height="600"
+						standby="Loading Processing software..."  >
+						
+					<param name="code" value="studio4harkka2.Studio4Harkka2" />
+					<param name="archive" value="Studio4Harkka2.jar" />
+					
+					<param name="mayscript" value="true" />
+					<param name="scriptable" value="true" />
+					
+					<param name="image" value="loading.gif" />
+					<param name="boxmessage" value="Loading Processing software..." />
+					<param name="boxbgcolor" value="#FFFFFF" />
+					
+					<param name="test_string" value="inner" />
+					
+					<p>
+						<strong>
+							This browser does not have a Java Plug-in.
+							<br />
+							<a href="http://www.java.com/getjava" title="Download Java Plug-in">
+								Get the latest Java Plug-in here.
+							</a>
+						</strong>
+					</p>
+				
+				</object>
+				
+			<!--[if !IE]> -->
+				</object>
+			<!--<![endif]-->
+			
+			</div>
+			
+			<p>
+			
+This class handles the window, collects data from other objects and
+draws it on the screen.
+
+@author Gandalf.
+Created 22.10.2012.
+	 * @return How many possible phases there are
+	 * 
+	 * This method changes how the screen is drawn. it changes the background
+	 * color and some other aspects.
+	 * 
+	 * leave parameter to -1 if you don't want to change it
+	 *
+	 * @param mincolour the smallest possible hue [0, 100]
+	 * @param colourRange how much the hue can change [0, 100]
+	 * @param brightness how brigth / dark the background is [0 (dark),
+	 * 100 (bright)]
+	 * @param alpha how effectively the screen is redrawn
+	 * [0 (every image stays), 100 (images last 1 frame)]
+	 * @param colourFrequency how fast the backgroung color is changed
+	 * @return whether the mouse is on the window's area
+	 * 
+	 * Tells whether a given point is within the window's area
+	 *
+	 * @param x point's x coordinate
+	 * @param y point's y coordinate
+	 * @param margin how much margin is added to the room (+ = more strict,
+	 *   - = less strict)
+	 * @return Is point within the window
+	 * 
+	 * Adds a new placer to the drawn placers
+	 *
+	 * @param p the placer to be added
+	 * @return was the placer successfully added
+	 * 
+	 * Removes the given placer from the list of drawn placers
+	 *
+	 * @param p the placer to be removed
+	 * @return was the placer removed successfully
+	 * 
+	 * Adds a phase to the possible phase candidates, this doesn't do
+	 * anything to the new phase, however.
+	 *
+	 *@param p The phase to be added
+	 * 
+	 * This method removes the phase from the possibly used phases
+	 * Use this if you won't want to see a phase again
+	 *
+	 * @param p the phase to be removed
+	 * 
+	 * Pics a random phase from the phases -list
+	 *
+	 * @return the randomly picked phase, null if there are no possible phases
+	 * 
+	 * Calculates a distance between two points.
+	 *
+	 * @param x1 First point's x coordinate
+	 * @param y1 First point's y coordinate
+	 * @param x2 Second point's x coordinate
+	 * @param y2 Second point's y coordinate
+	 * @return Distance between points in pixels
+	 * 
+	 * Calculates the direction from one point to another (in radians)
+	 *
+	 * @param x1 the first point's x coordinate
+	 * @param y1 the first point's y coordinate
+	 * @param x2 the second point's x coordinate
+	 * @param y2 the second point's y coordinate
+	 * @return the direction from point 1 to point 2 in radians
+
+			</p>
+			
+			<p>
+			Source code: <a href="BallParticle.java">BallParticle.java</a> <a href="BallPhase.java">BallPhase.java</a> <a href="BallPlacer.java">BallPlacer.java</a> <a href="Flower.java">Flower.java</a> <a href="HippieFlower.java">HippieFlower.java</a> <a href="HippiePhase.java">HippiePhase.java</a> <a href="HippiePlacer.java">HippiePlacer.java</a> <a href="LineParticle.java">LineParticle.java</a> <a href="LinePhase.java">LinePhase.java</a> <a href="LinePlacer.java">LinePlacer.java</a> <a href="Particle.java">Particle.java</a> <a href="PetalParticle.java">PetalParticle.java</a> <a href="PetalPlacer.java">PetalPlacer.java</a> <a href="Phase.java">Phase.java</a> <a href="Placer.java">Placer.java</a> <a href="Rectangle.java">Rectangle.java</a> <a href="RectFlowerPhase.java">RectFlowerPhase.java</a> <a href="RectPhase.java">RectPhase.java</a> <a href="RectPlacer.java">RectPlacer.java</a> <a href="Studio4Harkka2.java">Studio4Harkka2.java</a> <a href="TestParticle.java">TestParticle.java</a> <a href="TestPlacer.java">TestPlacer.java</a> 
+			</p>
+			
+			<p>
+			Built with <a href="http://processing.org" title="Processing.org">Processing</a>
+			</p>
+		</div>
+	</body>
+</html>

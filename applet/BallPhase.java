@@ -3,19 +3,19 @@ package studio4harkka2;
 /**
  * In this phase balls flow around the screen and the screen is quite static
  *
- * @author Marde.
+ * @author Gandalf.
  *         Created 31.10.2012.
  */
-public class LinePhase extends Phase
+public class BallPhase extends Phase
 {	
 	// CONSTRUCTOR	------------------------------------------------------
 
 	/**
-	 * This creates a new linephase with a quite long duration
+	 * This creates a new ballphase with a quite long duration
 	 *
 	 * @param parentApplet the applet to which the particles are drawn
 	 */
-	public LinePhase(Studio4Harkka2 parentApplet)
+	public BallPhase(Studio4Harkka2 parentApplet)
 	{
 		super(parentApplet, 4000);
 	}
@@ -27,9 +27,10 @@ public class LinePhase extends Phase
 	public void onStart()
 	{
 		// Changes the applet's visuals
-		getApplet().setVisuals(0, 0, 0, 100, 0);		
+		getApplet().setVisuals(0, 10, 80, 10, 0.05);
+		
 		// Adds placers
-		addPlacer(new LinePlacer(getApplet()));
+		addPlacer(new BallPlacer(getApplet()));
 	}
 
 }

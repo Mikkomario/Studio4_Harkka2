@@ -44,12 +44,16 @@ public class LineParticle extends Particle
 	@Override
 	public void drawSelf()
 	{
+		//System.out.println("Draws a particle!");
 
 		// Calculates the strokeWeight
 		float weight = 18;
 
 		getApplet().strokeWeight(weight);
 		getApplet().stroke(0, 0, 100);
+
+		// Draws self (Positioning is done automatically!!!)
+		// Notice the origin position (25, 25)
 		getApplet().line(0, -(this.getApplet().height/2), 0, this.getApplet().height/2);
 
 	}
@@ -57,6 +61,14 @@ public class LineParticle extends Particle
 	@Override
 	public boolean positionIsOver(int x, int y)
 	{
+		// It is actually really hard to know if a position is over the the rect
+		// since it can be scaled and rotated randomly.
+		// Notice that particle's position refer's to the
+		// position of it's origin
+
+		// Collision detection might be done by dividing the distance to
+		// two vectors using cos and sin and stuff but I hate them so I don't
+		//int maxDist = (int) (25*(Math.max(getXScale(), getYScale())));
 
 		return false;
 	}
@@ -64,7 +76,11 @@ public class LineParticle extends Particle
 	@Override 
 	public void onMouseOver()
 	{
-
+		// When mouse is over the lines will start spinning uncontrollably
+//		if (getRotation() == 0)
+//			setRotation(20*(rand.nextDouble() - 0.5));
+//		else
+//			addRotation(getRotation()*0.05);
 	}
 
 	@Override
@@ -76,6 +92,6 @@ public class LineParticle extends Particle
 	@Override
 	public void onMouseDown()
 	{
-
+		// Doesn't do anything particular
 	}
 }

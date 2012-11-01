@@ -27,6 +27,7 @@ public class LinePhase extends Phase
 	public void onStart()
 	{
 		// Changes the applet's visuals
+		//getApplet().setVisuals(0, 10, 80, 10, 0);
 		getApplet().setVisuals(0, 0, 0, 100, 0);		
 		// Adds placers
 		addPlacer(new LinePlacer(getApplet()));
