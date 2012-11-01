@@ -16,7 +16,18 @@ public class Rectangle extends Particle {
 	private int slowDown;
 	private static Random rand = new Random();
 	
-	
+	/**
+	 * Constructor
+	 * 
+	 * @param newx new position's x coordinate
+	 * @param newy new position's y coordinate
+	 * @param maxVelocity defines the beginning velocity of the rectangle
+	 * @param xscale defines how much the width is scaled
+	 * @param yscale defines how much the height is scaled
+	 * @param parentPlacer defines the parent placer of the rectangle
+	 * @param parentApplet defines the parent applet of the rectangle
+	 * @param strokeWeight defines how thick the border of the rectangle is
+	 */
 	public Rectangle(int newx, int newy, double maxVelocity, double xscale,
 			double yscale, Placer parentPlacer, PApplet parentApplet, 
 			int strokeWeight){
@@ -36,6 +47,9 @@ public class Rectangle extends Particle {
 		this.originalVelocity = this.getMaxVelocity();
 	}
 
+	/**
+	 * Method that draws the rectangle.
+	 */
 	@Override
 	public void drawSelf() {
 		
@@ -50,6 +64,10 @@ public class Rectangle extends Particle {
 		
 	}
 
+	/**
+	 * Method that tells whether the mouse is over the rectangle.
+	 * @return true, if the mouse is over the rectangle, otherwise false
+	 */
 	@Override
 	public boolean positionIsOver(int x, int y) {
 		double halfWidth = this.getXScale()*50/2;
@@ -66,6 +84,11 @@ public class Rectangle extends Particle {
 		//this method isn't needed
 	}
 
+	
+	/**
+	 * Method, that changes the rectangle's moving status. If the rectangle is
+	 * moving when the mouse is pressed, it stops it and vice versa.
+	 */
 	@Override
 	public void onMousePressed() {
 		if(this.isMoving){
@@ -81,6 +104,11 @@ public class Rectangle extends Particle {
 		//this method isn't needed
 	}
 	
+	/**
+	 * Checks whether the rectangle is on the move.
+	 * @return true, if the rectangle is moving, false, if the rectangle is 
+	 * still
+	 */
 	public boolean isMoving(){
 		if(this.isMoving){
 			return true;
@@ -88,21 +116,31 @@ public class Rectangle extends Particle {
 		return false;
 	}
 	
+	/**
+	 * Method, that moves rectangle, if the rectangle is in moving mode and 
+	 * slows the movement down if it has been moving for a certain time. When 
+	 * the velocity reaches zero, the method stops sets the original velocity
+	 * as the velocity and sets the moving status to false
+	 */
 	public void moveParticle(){
 		if(this.isMoving){
 					
-			this.x = (int)(Math.sin(directionAngle)*Math.sin(phaseAngle)*this.distance);
-			this.y = (int)(Math.cos(directionAngle)*Math.sin(phaseAngle)*this.distance);
+			this.x = (int)(Math.sin(directionAngle)*Math.sin(phaseAngle)
+					*this.distance);
+			this.y = (int)(Math.cos(directionAngle)*Math.sin(phaseAngle)
+					*this.distance);
 			
 			this.phaseAngle = this.phaseAngle+0.1;
 			
 			this.slowDown++;
 			
 			if(this.slowDown > 100){
-				this.setMaxVelocity(this.getMaxVelocity()-0.1);
+				this.setMaxVelocity(this.getMaxVelocity()-0.05);
 				if(this.getMaxVelocity() == 0){
 					this.isMoving = false;
 					this.setMaxVelocity(this.originalVelocity);
+					this.slowDown= 0;
+					this.phaseAngle = 0;
 				}
 			}
 		}	

@@ -9,6 +9,12 @@ public class HippiePlacer extends Placer {
 	private PImage images[];
 	private static Random rand = new Random();
 	
+	/**
+	 * Constructor
+	 * 
+	 * Possible images for the hippie-flowers are loaded in the constructor
+	 * @param parentApplet defines the parent applet of this placer
+	 */
 	public HippiePlacer(PApplet parentApplet){
 		super(parentApplet);
 		this.images = new PImage[6];
@@ -23,6 +29,10 @@ public class HippiePlacer extends Placer {
 		}
 	}
 
+	/**
+	 * Generates a new random hippie-flower
+	 * @return a hippie-flower
+	 */
 	@Override
 	public Particle generateParticle() {
 		int x = (int)(rand.nextDouble()*this.getApplet().width);
@@ -43,6 +53,9 @@ public class HippiePlacer extends Placer {
 		
 	}
 	
+	/**
+	 * Adds a new hippie-flower when the mouse is pressed.
+	 */
 	@Override
 	public void onMousePressed() {
 		this.addParticle();
