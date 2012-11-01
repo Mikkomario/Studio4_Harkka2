@@ -27,7 +27,7 @@ public class BallPhase extends Phase
 	public void onStart()
 	{
 		// Changes the applet's visuals
-		getApplet().setVisuals(0, 10, 80, 10, 0.05);
+		getApplet().setVisuals(0, 10, 80, 0, 0.05);
 		
 		// Adds placers
 		addPlacer(new BallPlacer(getApplet()));
