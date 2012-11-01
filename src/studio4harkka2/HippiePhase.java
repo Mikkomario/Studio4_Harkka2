@@ -1,5 +1,12 @@
 package studio4harkka2;
 
+/**
+ *  This class represents a hippie-flower phase in the program's flow.
+ * 	Creates HippiePlacer to the applet.
+ * 
+ * @author Tiitu
+ *
+ */
 public class HippiePhase extends Phase{
 
 	/**

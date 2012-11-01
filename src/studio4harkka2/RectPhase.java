@@ -1,5 +1,12 @@
 package studio4harkka2;
 
+/**
+ * This class represents a rectangle phase in the program's flow
+ * Creates a RectPhase to the applet
+ * 
+ * @author Tiitu
+ *
+ */
 public class RectPhase extends Phase{
 
 	/**

@@ -5,6 +5,13 @@ import java.util.Random;
 import processing.core.PApplet;
 import processing.core.PImage;
 
+/**
+ * HippiePlacer extends Placer. Places HippieFlowers in the screen and
+ * creates a new HippieFlower when mouse is pressed.
+ * 
+ * @author Tiitu
+ *
+ */
 public class HippiePlacer extends Placer {
 	private PImage images[];
 	private static Random rand = new Random();
