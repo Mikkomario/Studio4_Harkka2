@@ -1,13 +1,13 @@
 package studio4harkka2;
 
+import java.util.Random;
+
 import processing.core.PApplet;
 import processing.core.PImage;
 
 /**
  * This placer creates LineParticles and kills them when they go outside
  * the room.
- * 
- * The placer draws the pictures, listens to mouse actions and creates an optical illusion.
  *
  * @author Marde.
  *         Created 30.10.2012.
@@ -17,10 +17,10 @@ public class LinePlacer extends Placer
 	// ATTRIBUTES --------------------------------------------------------
 
 	private int tillCreation;
-	// counting the mouse klicks
 	private int klick;
-	// taustalla oleva kuva
+	private static Random rand = new Random();
 	private PImage rs;
+	// kuva näkyy true tai false!!
 
 
 	// CONSTRUCTOR -------------------------------------------------------
@@ -65,16 +65,19 @@ public class LinePlacer extends Placer
 		// Here the placer creates new particles and removes old ones
 		handleCreation();
 		removeOutsiders();
+		//addClicks();
+		//clickCheck();
 		
-		// here the klick number is checked and the image factors are being checked
 		if(this.klick == 1){
 			getApplet().tint(55, 37);
-			getApplet().image(this.rs, 170, 100);
+			getApplet().image(rs, 170, 100);
 		}
+
+		// roll eli suu kiinni
 		else if(this.klick == 2){
 			getApplet().tint(35, 37);
-			getApplet().image(this.rs, 150, 38);	
-		}	
+			getApplet().image(rs, 150, 38);	
+		}
 		
 		getApplet().tint(100, 100);
 	}
@@ -89,6 +92,8 @@ public class LinePlacer extends Placer
 
 		if (this.tillCreation == 0)
 		{
+			//System.out.println("Creates a particle");
+
 			addParticle();
 			this.tillCreation = 10;
 
@@ -108,18 +113,22 @@ public class LinePlacer extends Placer
 		{
 			Particle p = getParticle(i);
 
+			// marginaali
 			int maxDist = 0;
+			//	int maxDist = (int) (Math.max(p.getXScale(), p.getYScale())*50);
+			//System.out.println(maxDist);
+			//System.out.println("Coordinates for " + i + " : " + p.getX() +
+			//		", " + p.getY());
 
+			// "onko tämä piste x,y ikkunassa marginaalilla n?"
 			if (!applet.pointIsInWindow(p.getX(), p.getY(), -maxDist))
 			{
+				//System.out.println("Kills a particle at pos: " + p.getX() + ", " + p.getY());
 				removeParticle(p);
 			}
 		}
 	}
 
-	/**
-	 * @return How many steps will occur before a new particle is created 
-	 */
 	public int getTillCreation(){
 		return this.tillCreation;
 	}
@@ -130,11 +139,7 @@ public class LinePlacer extends Placer
 		addClicks();
 	}
 
-	/**
-	 * Adds clicks to the counter and loads the images.
-	 * Defines which images to use and when.
-	 * 
-	 */
+	
 	public void addClicks(){
 		
 		this.klick ++;
@@ -149,6 +154,9 @@ public class LinePlacer extends Placer
 
 		else if(this.klick == 2){
 			this.rs = getApplet().loadImage("roll.png");
-		}	
+		}
+		
+		if(this.klick == 0){			
+		}		
 	}
 }
