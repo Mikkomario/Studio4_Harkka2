@@ -63,10 +63,13 @@ public class Studio4Harkka2 extends PApplet
 		
 		// Creates all the phases and adds them to the phase list
 		// TODO: Add your own phases here
-	/*	addPhase(new BallPhase(this));
-		addPhase(new RectFlowerPhase(this));
-		addPhase(new HippiePhase(this));*/
-		addPhase(new RectPhase(this));
+
+
+		//addPhase(new BallPhase(this));
+		//addPhase(new RectFlowerPhase(this));
+		addPhase(new HippiePhase(this));
+		//addPhase(new RectPhase(this));
+		addPhase(new LinePhase(this));
 		// Starts a random phase
 		randomPhase().start();
 
