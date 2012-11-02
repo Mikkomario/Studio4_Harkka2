@@ -28,7 +28,8 @@ public abstract class Phase
 	 *
 	 * @param parentApplet the applet to which the particles are drawn
 	 * This applet must be Studio4Harkka2
-	 * @param duration the duration of this phase in steps / frames
+	 * @param duration the duration of this phase in steps / frames (Negative
+	 * number means infinite)
 	 */
 	public Phase(Studio4Harkka2 parentApplet, int duration)
 	{
@@ -111,7 +112,7 @@ public abstract class Phase
 		
 		this.duration --;
 		
-		if (this.duration <= 0)
+		if (this.duration == 0)
 			end();
 	}
 	
@@ -171,6 +172,7 @@ public abstract class Phase
 		clearPlacers();
 		this.duration = this.startDuration;
 		this.active = true;
+		getApplet().setCurrentPhase(this);
 		onStart();
 	}
 	

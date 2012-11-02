@@ -3,8 +3,14 @@ package studio4harkka2;
 import java.util.Random;
 
 import processing.core.PApplet;
- 
 
+/**
+  * RectPlacer extends Placer. Places Rectangles in the screen in the beginning
+  * and calls their moving-method if their moving status is true.
+  * 
+  * @author Tiitu
+  *
+  */
 public class RectPlacer extends Placer {
 	private Random rand;
 

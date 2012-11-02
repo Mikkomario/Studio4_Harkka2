@@ -27,7 +27,7 @@ public class RectFlowerPhase extends Phase
 		getApplet().setVisuals(3, 10, 75, 25, 0.01);
 		// Adds some placers
 		addPlacer(new RectPlacer(getApplet()));
-		addPlacer(new PetalPlacer(getApplet()));
+		addPlacer(new PetalPlacer(getApplet(), false));
 	}
 
 }

@@ -5,6 +5,13 @@ import java.util.Random;
 import processing.core.PApplet;
 import processing.core.PImage;
 
+/**
+ * HippiePlacer extends Placer. Places HippieFlowers in the screen and
+ * creates a new HippieFlower when mouse is pressed.
+ * 
+ * @author Tiitu
+ *
+ */
 public class HippiePlacer extends Placer {
 	private PImage images[];
 	private static Random rand = new Random();
@@ -39,7 +46,7 @@ public class HippiePlacer extends Placer {
 		int y = (int)(rand.nextDouble()*this.getApplet().height);
 		double maxVelocity = 5+8*rand.nextDouble();
 		double friction = 3*rand.nextDouble();
-		double maxRotation= 5+8*rand.nextDouble();
+		double maxRotation= 5+5*rand.nextDouble();
 		double scale = 0.1+rand.nextDouble();
 		int arpa = rand.nextInt(6);
 		PImage image = this.images[arpa];
@@ -49,8 +56,27 @@ public class HippiePlacer extends Placer {
 	}
 
 	@Override
-	public void onStep() {
-		
+	public void onStep()
+	{
+		// Makes the flowers roll wildly (by Gandalf)
+		for (int i = 0; i < getSize(); i++)
+		{
+			// Works only with hippieflowers
+			if (!(getParticle(i) instanceof HippieFlower))
+				continue;
+			
+			HippieFlower h = (HippieFlower) getParticle(i);
+			
+			// Calculates the relative position
+			int rx = (int) (Math.cos(Math.toRadians(h.getAngle())) *
+					h.getXScale() * 100);
+			int ry = (int) (Math.sin(Math.toRadians(h.getAngle())) *
+					h.getXScale() * 100);
+			
+			// Sets the new position
+			h.setPosition(h.getStartPosition()[0] + rx,
+					h.getStartPosition()[1] + ry);
+		}
 	}
 	
 	/**

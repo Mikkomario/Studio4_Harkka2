@@ -5,7 +5,12 @@ import java.util.ArrayList;
 import processing.core.PApplet;
 
 /**
- * TODO Put here a description of what this class does.
+ * This abstract class creates and draws some particles to the screen. Usually
+ * the particles are of a same type. This class also handles the movement and
+ * events of its particles.
+ * 
+ * Each subclass creates its own particles and may react differently
+ * to user input
  *
  * @author Gandalf.
  *         Created 22.10.2012.

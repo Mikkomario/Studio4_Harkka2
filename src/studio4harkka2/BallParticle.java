@@ -3,7 +3,9 @@ package studio4harkka2;
 import processing.core.PApplet;
 
 /**
- * TODO Put here a description of what this class does.
+ * This particle represents a single bouncing ball. Each ball stays on the
+ * screen for a while, colliding with the borders, and then goes outside the
+ * screen and dies.
  *
  * @author Gandalf.
  *         Created 30.10.2012.

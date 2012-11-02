@@ -5,9 +5,16 @@ import java.util.Random;
 import processing.core.PApplet;
 import processing.core.PImage;
 
+/**HippieFlower repesents a single visual image drawn on the screen.
+* The class extends Particle. It may be a flower of some kind or a peace sign.
+* Knows its position, has a velocity and can draw itself onto the screen. 
+* When mouse is over it, it starts rotating.
+* @author - Tiitu
+*/
 public class HippieFlower extends Particle {
 	private PImage image;
 	private static Random rand = new Random();
+	private int[] startPosition;
 	
 	/**
 	 * Constructor
@@ -27,8 +34,12 @@ public class HippieFlower extends Particle {
 			double maxRotation, double scale, Placer parentPlacer,
 			PApplet parentApplet, PImage image){
 		super(newx, newy, maxVelocity, friction, 
-				maxRotation, 0, scale, scale, 250, parentPlacer, parentApplet);
+				maxRotation, 0, scale, scale, 750, parentPlacer, parentApplet);
 		this.image = image;
+		
+		this.startPosition = new int[2];
+		this.startPosition[0] = newx;
+		this.startPosition[1] = newy;
 	}
 
 	/**
@@ -36,12 +47,12 @@ public class HippieFlower extends Particle {
 	 */
 	@Override
 	public void drawSelf() {
-		this.getApplet().image(this.image, this.image.width/2, 
-								this.image.height/2);
+		this.getApplet().image(this.image, -this.image.width/2, 
+								-this.image.height/2);
 	}
 
 	/**
-	 * 
+	 * Checks whether the mouse is over the hippie-flower
 	 */
 	@Override
 	public boolean positionIsOver(int x, int y) {
@@ -59,7 +70,8 @@ public class HippieFlower extends Particle {
 	}
 
 	/**
-	 * Method that 
+	 * Method that sets a value for rotation for the hippie-flower when the 
+	 * mouse is over it or speeds it if it already is rotating
 	 */
 	@Override
 	public void onMouseOver() {
@@ -77,6 +89,15 @@ public class HippieFlower extends Particle {
 	@Override
 	public void onMouseDown() {
 		//this method is not needed
+	}
+	
+	/**
+	 * @return the position to which the flower was drawn in the beginning
+	 * @author Gandalf
+	 */
+	public int[] getStartPosition()
+	{
+		return this.startPosition;
 	}
 	
 }

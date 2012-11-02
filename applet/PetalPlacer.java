@@ -21,6 +21,7 @@ public class PetalPlacer extends Placer
 	
 	private ArrayList<Flower> flowers;
 	private int tillBloom;
+	private boolean white;
 	
 	
 	// CONSTRUCTOR	------------------------------------------------------
@@ -29,13 +30,15 @@ public class PetalPlacer extends Placer
 	 * Creates a new PetalPlacer, but doesn't do much else
 	 *
 	 * @param parentApplet the applet to which the particles are drawn
+	 * @param white Are all the flowers in black and white
 	 */
-	public PetalPlacer(PApplet parentApplet)
+	public PetalPlacer(PApplet parentApplet, boolean white)
 	{
 		super(parentApplet);
 		
 		this.flowers = new ArrayList<Flower>();
 		this.tillBloom = 150;
+		this.white = white;
 	}
 	
 	
@@ -106,8 +109,13 @@ public class PetalPlacer extends Placer
 		// And the number of petals
 		int petalnumber = 2 + rand.nextInt(19);
 		
+		int saturation = 100;
+		
+		if (this.white)
+			saturation = 0;
+		
 		Flower newflower = new Flower(newx, newy, colour, xscale, yscale, 
-				petalnumber, this, getApplet(), callNumber);
+				petalnumber, this, getApplet(), callNumber, saturation);
 		
 		// Checks whether the flower would fit into the screen
 		if (getApplet() instanceof Studio4Harkka2 &&
