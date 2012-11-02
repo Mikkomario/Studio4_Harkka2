@@ -56,8 +56,9 @@ public class HippiePlacer extends Placer {
 	}
 
 	@Override
-	public void onStep() {
-		
+	public void onStep()
+	{
+		// Doesn't do anything
 	}
 	
 	/**

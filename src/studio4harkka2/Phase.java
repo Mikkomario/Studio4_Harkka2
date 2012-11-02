@@ -171,6 +171,7 @@ public abstract class Phase
 		clearPlacers();
 		this.duration = this.startDuration;
 		this.active = true;
+		getApplet().setCurrentPhase(this);
 		onStart();
 	}
 	

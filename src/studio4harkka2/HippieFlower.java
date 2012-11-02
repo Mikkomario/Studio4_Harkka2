@@ -33,7 +33,7 @@ public class HippieFlower extends Particle {
 			double maxRotation, double scale, Placer parentPlacer,
 			PApplet parentApplet, PImage image){
 		super(newx, newy, maxVelocity, friction, 
-				maxRotation, 0, scale, scale, 500, parentPlacer, parentApplet);
+				maxRotation, 0, scale, scale, 750, parentPlacer, parentApplet);
 		this.image = image;
 	}
 

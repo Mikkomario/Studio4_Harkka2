@@ -26,6 +26,7 @@ public class Studio4Harkka2 extends PApplet
 	private int brightness;
 	private int alpha;
 	private ArrayList<Phase> phases;
+	private Phase currentPhase;
 	
 	
 	// BASIC METHODS ----------------------------------------------------
@@ -47,6 +48,8 @@ public class Studio4Harkka2 extends PApplet
 		this.colourRange = 14;
 		this.brightness = 70;
 		this.alpha = 20;
+		// Shows the intro screen first
+		this.currentPhase = new IntroPhase(this);
 		
 		// Gandalf: These lines should NOT be uncommented anymore, the class
 		// now uses phases instead of these placers
@@ -70,7 +73,7 @@ public class Studio4Harkka2 extends PApplet
 		addPhase(new LinePhase(this));
 		
 		// Starts a random phase
-		randomPhase().start();
+		this.currentPhase.start();
 	}
 
 	@Override
@@ -100,6 +103,7 @@ public class Studio4Harkka2 extends PApplet
 		}
 		
 		// Informs the active phase(s) about the step event
+		/*
 		for (int i = 0; i < getPhaseNumber(); i++)
 		{	
 			Phase p = this.phases.get(i);
@@ -107,6 +111,10 @@ public class Studio4Harkka2 extends PApplet
 			if (p != null && p.isActive())
 				p.onStep();
 		}
+		*/
+		// Actually only informs the current phase
+		if (this.currentPhase != null && this.currentPhase.isActive())
+			this.currentPhase.onStep();
 		
 		this.colorangle += this.colorfrequency;
 	}
@@ -129,6 +137,15 @@ public class Studio4Harkka2 extends PApplet
 			// Informs the placer(s)
 			p.onMouseReleased();
 		}
+	}
+	
+	@Override
+	public void keyPressed()
+	{
+		//System.out.println("Pressed");
+		// When any key is pressed, the current phase ends and a new starts
+		if (this.currentPhase != null)
+			this.currentPhase.end();
 	}
 	
 	
@@ -172,6 +189,16 @@ public class Studio4Harkka2 extends PApplet
 			this.colorfrequency = colourFrequency;
 	}
 	
+	/**
+	 * 
+	 * Sets a new phase as the drawn phase.
+	 *
+	 * @param p the new phase to be drawn
+	 */
+	public void setCurrentPhase(Phase p)
+	{
+		this.currentPhase = p;
+	}
 	
 	// OTHER METHODS ------------------------------------------------------
 	

@@ -47,9 +47,9 @@ public class Rectangle extends Particle {
 		this.phaseAngle = 0;
 		this.isMoving = false;
 		this.distance = 20+rand.nextInt(140);
-		this.x = (int)(Math.sin(directionAngle)*Math.sin(phaseAngle)
+		this.x = (int)(Math.sin(this.directionAngle)*Math.sin(this.phaseAngle)
 				*this.distance);
-		this.y = (int)(Math.cos(directionAngle)*Math.sin(phaseAngle)
+		this.y = (int)(Math.cos(this.directionAngle)*Math.sin(this.phaseAngle)
 				*this.distance);
 		this.slowDown = 0;
 		this.originalVelocity = this.getMaxVelocity();
@@ -126,10 +126,10 @@ public class Rectangle extends Particle {
 	public void moveParticle(){
 		if(this.isMoving){
 					
-			this.x = (int)(Math.sin(directionAngle)*Math.sin(phaseAngle)
-					*this.distance);
-			this.y = (int)(Math.cos(directionAngle)*Math.sin(phaseAngle)
-					*this.distance);
+			this.x = (int)(Math.sin(this.directionAngle)
+					*Math.sin(this.phaseAngle)*this.distance);
+			this.y = (int)(Math.cos(this.directionAngle)
+					*Math.sin(this.phaseAngle)*this.distance);
 			
 			this.phaseAngle = this.phaseAngle+0.1;
 			

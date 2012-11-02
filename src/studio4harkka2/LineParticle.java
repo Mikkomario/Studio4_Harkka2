@@ -1,34 +1,23 @@
 package studio4harkka2;
 
-import java.util.Random;
-
 import processing.core.PApplet;
-import processing.core.PImage;
 
 /**
- * This is a small example of how to create your own particle classes.
- * Each particle is a simple rectangle that travels around the screen and
- * dies when goes outside.
+ * This class represents a simple line that travels from the left to the
+ * right
  *
  * @author Marde.
  *         Created 29.10.2012.
  */
 public class LineParticle extends Particle
 {
-
 	/**
-	 * This creates a new test particle that lasts indefinitely and doesn't
-	 * slow down. Each particle is created to the center of the screen.
+	 * This creates a new line that travels from the left side of the screen
+	 * to the right side.
 	 *
-	 * @param rotationFriction how much the rotation slows each step
-	 * @param xscale how much the particle is scaled horizontally
-	 * @param yscale how much the particle is scaled vertically
 	 * @param parentPlacer Who created this particle
 	 * @param parentApplet To what screen this particle will be drawn
 	 */
-	
-	private PImage rs;
-	
 	public LineParticle(Placer parentPlacer,
 			PApplet parentApplet)
 	{
@@ -64,18 +53,18 @@ public class LineParticle extends Particle
 	@Override 
 	public void onMouseOver()
 	{
-
+		// Does nothing
 	}
 
 	@Override
 	public void onMousePressed()
 	{
-
+		// Does nothing
 	}
 
 	@Override
 	public void onMouseDown()
 	{
-
+		// Does nothing
 	}
 }
