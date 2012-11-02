@@ -30,6 +30,7 @@ public class Flower
 	private PetalPlacer placer;
 	private PApplet applet;
 	private int callNumber;
+	private int saturation;
 	
 	
 	// CONSTRUCTOR	------------------------------------------------------
@@ -49,10 +50,11 @@ public class Flower
 	 * @param parentApplet the applet to which the petals are drawn
 	 * @param callNumber How many "parents" this flower has (flower that
 	 * creates a flower is its parent and all its children's parent)
+	 * @param saturation the saturation of the petals [0, 100]
 	 */
 	public Flower(int x, int y, int colour, double xscale, double yscale,
 			int maxPetals, PetalPlacer parentPlacer, PApplet parentApplet, 
-			int callNumber)
+			int callNumber, int saturation)
 	{
 		// Initializes the variables
 		this.x = x;
@@ -68,6 +70,7 @@ public class Flower
 		this.duration = 250 - (callNumber * 20);
 		this.maxDuration = this.duration;
 		this.petals = 0;
+		this.saturation = saturation;
 	}
 	
 	
@@ -168,7 +171,8 @@ public class Flower
 			PetalParticle p = new PetalParticle(getX(), getY(),
 					this.xscale*(0.85 + rand.nextDouble()*0.3),
 					this.yscale*(0.85 + rand.nextDouble()*0.3),
-					this.maxDuration, this.placer, this.applet, newcolour);
+					this.maxDuration, this.placer, this.applet, newcolour,
+					this.saturation);
 			p.setRotation(360 / (10.0 * (this.maxPetals)));
 			this.placer.addParticle(p);
 			

@@ -14,6 +14,7 @@ import processing.core.PImage;
 public class HippieFlower extends Particle {
 	private PImage image;
 	private static Random rand = new Random();
+	private int[] startPosition;
 	
 	/**
 	 * Constructor
@@ -35,6 +36,10 @@ public class HippieFlower extends Particle {
 		super(newx, newy, maxVelocity, friction, 
 				maxRotation, 0, scale, scale, 750, parentPlacer, parentApplet);
 		this.image = image;
+		
+		this.startPosition = new int[2];
+		this.startPosition[0] = newx;
+		this.startPosition[1] = newy;
 	}
 
 	/**
@@ -84,6 +89,15 @@ public class HippieFlower extends Particle {
 	@Override
 	public void onMouseDown() {
 		//this method is not needed
+	}
+	
+	/**
+	 * @return the position to which the flower was drawn in the beginning
+	 * @author Gandalf
+	 */
+	public int[] getStartPosition()
+	{
+		return this.startPosition;
 	}
 	
 }

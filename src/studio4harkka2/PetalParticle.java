@@ -14,7 +14,7 @@ public class PetalParticle extends Particle
 	// ATTRIBUTES ---------------------------------------------------------
 	
 	private int colour;
-	
+	private int saturation;
 	private int startDuration;
 	
 	// CONSTRUCTOR --------------------------------------------------------
@@ -30,9 +30,11 @@ public class PetalParticle extends Particle
 	 * @param parentPlacer
 	 * @param parentApplet
 	 * @param colour The hue of the petal
+	 * @param saturation the saturation of the petal
 	 */
 	public PetalParticle(int newx, int newy, double xscale, double yscale,
-			int duration, Placer parentPlacer, PApplet parentApplet, int colour)
+			int duration, Placer parentPlacer, PApplet parentApplet, int colour,
+			int saturation)
 	{
 		super(newx, newy, 20, 0.2, 60, 0, xscale,
 				yscale, duration, parentPlacer, parentApplet);
@@ -40,6 +42,7 @@ public class PetalParticle extends Particle
 		// Initializes attributes
 		this.colour = colour;
 		this.startDuration = duration;
+		this.saturation = saturation;
 	}
 	
 	
@@ -53,7 +56,7 @@ public class PetalParticle extends Particle
 		
 		// Sets the color and stuff
 		getApplet().noStroke();
-		getApplet().fill(this.colour, 100, (float) (((getDuration()
+		getApplet().fill(this.colour, this.saturation, (float) (((getDuration()
 				/ ((double) this.startDuration))) * 200), 80);
 		//getApplet().fill(this.colour, 100, brightness);
 		

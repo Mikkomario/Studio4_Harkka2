@@ -405,6 +405,8 @@ public abstract class Particle{
 	// Returns whether the rotation speed was reduced
 	private boolean checkMaxRotation()
 	{
+		//System.out.println(getRotation() - this.maxRotation);
+		
 		if (getRotation() > this.maxRotation)
 		{
 			this.rotation = this.maxRotation;

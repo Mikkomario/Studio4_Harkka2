@@ -143,6 +143,7 @@ public class Rectangle extends Particle {
 					this.slowDown= 0;
 					this.phaseAngle = 0;
 					this.setPosition(this.getX()+this.x, this.getY()+this.y);
+	
 				}
 			}
 		}	
