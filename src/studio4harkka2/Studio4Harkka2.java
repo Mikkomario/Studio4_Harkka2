@@ -72,6 +72,7 @@ public class Studio4Harkka2 extends PApplet
 		//addPhase(new RectPhase(this));
 		addPhase(new LinePhase(this));
 		addPhase(new LineFlowerPhase(this));
+		addPhase(new EpilepticBallPhase(this));
 		
 		// Starts a random phase
 		this.currentPhase.start();

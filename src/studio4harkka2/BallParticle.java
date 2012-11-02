@@ -16,6 +16,7 @@ public class BallParticle extends Particle
 	private int startLifeTime;
 	private double gravityDirection;
 	private double gravityForce;
+	private int colour;
 	
 
 	// CONSTRUCTOR	------------------------------------------------------
@@ -33,10 +34,11 @@ public class BallParticle extends Particle
 	 * @param duration How long the ball will stay in the screen
 	 * @param parentPlacer the placer who created the ball
 	 * @param parentApplet the applet to which the ball is drawn
+	 * @param colour The hue of the outer edge of the ball
 	 */
 	public BallParticle(int newx, int newy, double scale,
 			double gravityDirection, double gravityForce, int duration,
-			Placer parentPlacer, PApplet parentApplet)
+			Placer parentPlacer, PApplet parentApplet, int colour)
 	{
 		super(newx, newy, 15, 0, 0, 0, scale,
 				scale, -1, parentPlacer, parentApplet);
@@ -45,6 +47,7 @@ public class BallParticle extends Particle
 		this.startLifeTime = this.lifeTime;
 		this.gravityDirection = gravityDirection;
 		this.gravityForce = gravityForce;
+		this.colour = colour;
 	}
 	
 	
@@ -58,9 +61,14 @@ public class BallParticle extends Particle
 				* 70);
 		
 		// Draws a yellow / red ball
-		getApplet().stroke(0, 100, brightness);
+		getApplet().stroke(this.colour, 100, brightness);
 		getApplet().strokeWeight(3);
-		getApplet().fill(10, 100, brightness);
+		
+		int fillcol = this.colour + 3;
+		if (fillcol > 100)
+			fillcol -= 100;
+		
+		getApplet().fill(fillcol + 10, 100, brightness);
 		
 		getApplet().ellipse(0, 0, 50, 50);
 		getApplet().ellipse(0, 0, 35, 35);

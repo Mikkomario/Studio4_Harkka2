@@ -18,6 +18,7 @@ public class BallPlacer extends Placer
 	
 	private int tillCreation;
 	private int tillRandomCreation;
+	private int mincolour, ColourRange;
 	
 	
 	// CONSTRUCTOR	------------------------------------------------------
@@ -26,13 +27,17 @@ public class BallPlacer extends Placer
 	 * This creates a BallPlacer that will be ready to create balls when needed
 	 *
 	 * @param parentApplet
+	 * @param mincolour the smallest hue of the balls [0, 100]
+	 * @param colourRange how much the ball's colour varies [0, 100]
 	 */
-	public BallPlacer(PApplet parentApplet)
+	public BallPlacer(PApplet parentApplet, int mincolour, int colourRange)
 	{
 		super(parentApplet);
 		
 		this.tillCreation = 1;
 		this.tillRandomCreation = rand.nextInt(200);
+		this.mincolour = mincolour;
+		this.ColourRange = colourRange;
 	}
 	
 	
@@ -47,9 +52,11 @@ public class BallPlacer extends Placer
 		double grdir = rand.nextDouble()*2*Math.PI;
 		double grfrc = 0.05 + rand.nextDouble()*0.25;
 		int dur = rand.nextInt(1000);
+		int colour = this.mincolour + rand.nextInt(this.ColourRange + 1);
 		
 		BallParticle newball = new BallParticle(getApplet().mouseX,
-				getApplet().mouseY, scl, grdir, grfrc, dur, this, getApplet());
+				getApplet().mouseY, scl, grdir, grfrc, dur, this, getApplet(),
+				colour);
 		
 		// Also adds some velocity to start with
 		newball.addDirectionalVelocity(rand.nextDouble()*2*Math.PI,

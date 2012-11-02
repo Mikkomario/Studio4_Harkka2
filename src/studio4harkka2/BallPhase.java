@@ -27,10 +27,10 @@ public class BallPhase extends Phase
 	public void onStart()
 	{
 		// Changes the applet's visuals
-		getApplet().setVisuals(0, 10, 80, 0, 0.05);
+		getApplet().setVisuals(0, 0, 0, 0, 0);
 		
 		// Adds placers
-		addPlacer(new BallPlacer(getApplet()));
+		addPlacer(new BallPlacer(getApplet(), 0, 0));
 	}
 
 }
